@@ -1,10 +1,8 @@
-"use client"; 
+
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'; 
 
 export default function PaymentSuccess() {
-  const searchParams = useSearchParams(); 
-  const amount = searchParams.get("amount"); 
+ 
   return (
     <div>
     <main className="mt-20 flex items-center justify-center min-h-screen bg-gradient-to-tr from-blue-500 to-blue-400">
@@ -18,9 +16,7 @@ export default function PaymentSuccess() {
 
         <div className="mt-6 bg-gradient-to-r from-purple-600 to-blue-600 p-4 rounded-xl text-white">
           <h3 className="text-xl font-semibold">Amount Paid</h3>
-          <div className="mt-2 text-3xl font-bold">
-            ${amount}
-          </div>
+         
         </div>
 
         <div className="mt-6 text-sm text-gray-600">
