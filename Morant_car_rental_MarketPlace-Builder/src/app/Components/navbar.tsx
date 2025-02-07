@@ -53,9 +53,11 @@ const Navbar = () => {
             </div>
           </Link>
 
+           <Link href="/setting">
           <div className="w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
             <IoIosSettings className="text-gray-600 w-6 h-6 hover:text-blue-500 cursor-pointer" />
           </div>
+          </Link>
 
           <div className="">
             <Link href="/AnalyticDashboard">
