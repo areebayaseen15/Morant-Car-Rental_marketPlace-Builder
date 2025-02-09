@@ -3,57 +3,230 @@
 
 // User Schema
 
-export default {
-  name: 'user',
-  type: 'document',
+const user= {
+  name: "user",
+  type: "document",
+  title: "User",
   fields: [
-    { name: 'fullName', type: 'string', title: 'Full Name' },
-    { name: 'email', type: 'string', title: 'Email Address' },
-    { name: 'password', type: 'string', title: 'Password' },
-    { name: 'contactNumber', type: 'string', title: 'Contact Number' },
-    { name: 'userType', type: 'string', title: 'User Type', options: { list: ['Renter', 'Owner'] } }
-  ]
+    {
+      name: "clerkId",
+      type: "string",
+      title: "Clerk ID",
+    },
+    {
+      name: "wishlist",
+      type: "array",
+      title: "Wishlist",
+      of: [{ type: "reference", to: [{ type: "car" }] }],
+    },
+  ],
 };
+
+export default user
 // Car Schema
 
-export default {
-  name: 'car',
-  type: 'document',
+const Car = {
+  name: "car",
+  type: "document",
+  title: "Car",
   fields: [
-    { name: 'carName', type: 'string', title: 'Car Name' },
-    { name: 'carBrand', type: 'string', title: 'Car Brand' },
-    { name: 'carType', type: 'string', title: 'Car Type', options: { list: ['SUV', 'Sedan', 'Hatchback', 'Luxury', 'Electric'] } },
-    { name: 'rentalPrice', type: 'number', title: 'Rental Price Per Day' },
-    { name: 'availability', type: 'boolean', title: 'Availability' },
-    { name: 'owner', type: 'reference', to: [{ type: 'user' }], title: 'Car Owner' }
-  ]
+    {
+      name: "name",
+      type: "string",
+      title: "Car Name",
+    },
+    {
+      name: "brand",
+      type: "string",
+      title: "Brand",
+      description: "Brand of the car (e.g., Nissan, Tesla, etc.)",
+    },
+    {
+      name: "type",
+      type: "string",
+      title: "Car Type",
+      description: "Type of the car (e.g., Sport, Sedan, SUV, etc.)",
+    },
+    {
+      name: "fuelCapacity",
+      type: "string",
+      title: "Fuel Capacity",
+      description: "Fuel capacity or battery capacity (e.g., 90L, 100kWh)",
+    },
+    {
+      name: "transmission",
+      type: "string",
+      title: "Transmission",
+      description: "Type of transmission (e.g., Manual, Automatic)",
+    },
+    {
+      name: "seatingCapacity",
+      type: "string",
+      title: "Seating Capacity",
+      description: "Number of seats (e.g., 2 People, 4 seats)",
+    },
+    {
+      name: "pricePerDay",
+      type: "string",
+      title: "Price Per Day",
+      description: "Rental price per day",
+    },
+    {
+      name: "originalPrice",
+      type: "string",
+      title: "Original Price",
+      description: "Original price before discount (if applicable)",
+    },
+    {
+      name: "tags",
+      type: "array",
+      title: "Tags",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
+      description: "Tags for categorization (e.g., popular, recommended)",
+    },
+    {
+      name: "image",
+      type: "image",
+      title: "Car Image",
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: "slug",
+      type: "slug",
+      options: {
+        source: "name",
+        maxLength: 200,
+      },
+    },
+    {
+      name: "description",
+      type: "text",
+      title: "Car Description",
+      description: "Detailed description about the car, features, and specifications.",
+    },
+    {
+      name: "availability",
+      title: "Availability",
+      type: "object",
+      fields: [
+        {
+          name: "locations",
+          title: "Available Locations",
+          type: "array",
+          of: [{ type: "string" }],
+          description: "Locations where this car is available (e.g., Sadar, Clifton).",
+        },
+        {
+          name: "availableDates",
+          title: "Available Dates",
+          type: "array",
+          of: [{ type: "string" }],
+          description: "Dates when the car is available (e.g., '2025-02-10', '2025-02-15').",
+        },
+        {
+          name: "availableTimes",
+          title: "Available Times",
+          type: "array",
+          of: [{ type: "string" }],
+          description: "Times when the car is available (e.g., '08:00 AM', '12:00 PM').",
+        },
+      ],
+    },
+  ],
 };
+
+export default Car;
+
 // Booking Schema
 
-export default {
-  name: 'booking',
-  type: 'document',
+import { defineType } from "sanity";
+
+const booking = defineType({
+  name: "booking",
+  title: "Bookings",
+  type: "document",
   fields: [
-    { name: 'car', type: 'reference', to: [{ type: 'car' }], title: 'Car' },
-    { name: 'renter', type: 'reference', to: [{ type: 'user' }], title: 'Renter' },
-    { name: 'startDate', type: 'datetime', title: 'Start Date' },
-    { name: 'endDate', type: 'datetime', title: 'End Date' },
-    { name: 'totalCost', type: 'number', title: 'Total Cost' }
-  ]
-};
+    {
+      name: "name",
+      title: "Name",
+      type: "string",
+    },
+    {
+      name: "phone",
+      title: "Phone Number",
+      type: "string",
+    },
+    {
+      name: "address",
+      title: "Address",
+      type: "string",
+    },
+    {
+      name: "town",
+      title: "Town/City",
+      type: "string",
+    },
+    {
+      name: "rentalType",
+      title: "Rental Type",
+      type: "string",
+    },
+    {
+      name: "pickUpLocation",
+      title: "Pick-Up Location",
+      type: "string",
+    },
+    {
+      name: "pickUpDate",
+      title: "Pick-Up Date",
+      type: "datetime",
+    },
+    {
+      name: "pickUpTime",
+      title: "Pick-Up Time",
+      type: "string",
+    },
+    {
+      name: "dropOffLocation",
+      title: "Drop-Off Location",
+      type: "string",
+    },
+    {
+      name: "dropOffDate",
+      title: "Drop-Off Date",
+      type: "datetime",
+    },
+    {
+      name: "dropOffTime",
+      title: "Drop-Off Time",
+      type: "string",
+    },
+    {
+      name: "amountPaid",
+      title: "Amount Paid",
+      type: "number",
+      validation: (Rule) => Rule.min(0), // No explicit type needed
+    },
+    {
+      name: "paymentStatus",
+      title: "Payment Status",
+      type: "string",
+      options: {
+        list: ["success", "failed"],
+      },
+    },
+  ],
+});
+
+export default booking;
 
 // Review Schema
 
-export default {
-  name: 'review',
-  type: 'document',
-  fields: [
-    { name: 'car', type: 'reference', to: [{ type: 'car' }], title: 'Car' },
-    { name: 'user', type: 'reference', to: [{ type: 'user' }], title: 'User' },
-    { name: 'rating', type: 'number', title: 'Rating (1-5)' },
-    { name: 'comment', type: 'text', title: 'Comment' }
-  ]
-};
 
 // Payment Schema
 
@@ -67,7 +240,31 @@ export default {
     { name: 'paymentMethod', type: 'string', title: 'Payment Method', options: { list: ['Credit Card', 'Debit Card', 'PayPal', 'Cash'] } }
   ]
 };
-
+//Notification schema
+const notification= {
+    name: 'notification',
+    title: 'Notification',
+    type: 'document',
+    fields: [
+      {
+        name: 'title',
+        title: 'Title',
+        type: 'string',
+      },
+      {
+        name: 'message',
+        title: 'Message',
+        type: 'text',
+      },
+      {
+        name: 'date',
+        title: 'Date',
+        type: 'datetime',
+      },
+    ],
+  };
+  
+  export default notification
 
                                 simple Entity-Relationship Diagram (ERD)
 
