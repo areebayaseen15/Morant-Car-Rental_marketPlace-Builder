@@ -1,5 +1,5 @@
 
-                  4: Data Schema Design for our car-rental MarketPla: 
+                  4: Data Schema Design for our car-rental MarketPlace: 
 
 // User Schema
 
