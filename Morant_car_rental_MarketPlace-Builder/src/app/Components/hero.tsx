@@ -57,9 +57,9 @@ export default function Hero() {
       </div>
 
       {/* 🚗 Pickup and Drop-off Cards with Arrow Button in Between */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-6 md:mt-10 mt-0 mx-auto">
+      <div className="flex flex-col  lg:flex-row mx-20 items-center lg:justify-center lg:gap-6 md:mt-10 mt-0 lg:mx-10">
         {/* Pick-Up Card */}
-        <div className="lg:items-start md:w-[500px] md:items-center mx-20 w-[400px] lg:mx-w-[600px] xl:mx-w-[582px] lg:mr-10 bg-white rounded-[10px] shadow-xl px-4 py-4">
+        <div className="lg:items-start md:w-[500px] md:items-center w-[350px] lg:mx-w-[600px] xl:mx-w-[582px]  bg-white rounded-[10px] shadow-xl px-4 py-4">
           <div className="flex gap-3">
             <Image src="/Assets/mark.png" alt="mark" width={20} height={20} />
             <h3 className="text-[16px] lg:text-xl font-semibold text-gray-800">Pick-Up</h3>
@@ -83,7 +83,7 @@ export default function Hero() {
 
             {/* Date Input */}
             <div>
-              <h1 className="text-[#1A202C] font-extrabold text-[16px] leading-[24px]">Date</h1>
+              <h1 className="text-[#1A202C] mx-10 lg:mx-auto font-extrabold text-[16px] leading-[24px]">Date</h1>
               <input
                 type="date"
                 value={pickup.date}
@@ -99,7 +99,7 @@ export default function Hero() {
                 type="time"
                 value={pickup.time}
                 onChange={(e) => setPickup({ ...pickup, time: e.target.value })}
-                className="w-full p-2 border-r rounded-md text-[#90A3BF] font-bold"
+                className="w-20 lg:w-full p-2 border-r rounded-md text-[#90A3BF] font-bold"
               />
             </div>
           </div>
@@ -107,14 +107,14 @@ export default function Hero() {
 
         {/* Arrow Button Between Cards */}
         <div className="flex justify-center items-center lg:flex-col">
-          <div className="flex bg-[#3563E9] w-[64px] h-[64px] hover:bg-[#2b4699] justify-center items-center rounded-xl">
-            <IoArrowUp className="text-white text-3xl" />
-            <IoArrowDown className="text-white text-3xl" />
+          <div className="flex bg-[#3563E9] w-[70px] h-[70px] lg:w-[80px] lg:h-[80px] hover:bg-[#2b4699] justify-center items-center rounded-xl">
+            <IoArrowUp className="text-white text-2xl w-[64px] h-[64px] " />
+            <IoArrowDown className="text-white text-2xl w-[64px] h-[64px] " />
           </div>
         </div>
 
         {/* Drop-Off Card */}
-        <div className="lg:items-start md:w-[500px] md:items-center mx-20 w-[400px] lg:mx-w-[600px] xl:mx-w-[582px] lg:mr-10 bg-white rounded-[10px] shadow-xl px-4 py-4">
+        <div className="lg:items-start md:w-[500px] md:items-center  w-[350px] lg:mx-w-[600px] xl:mx-w-[582px]  bg-white rounded-[10px] shadow-xl px-4 py-4">
           <div className="flex gap-3">
             <Image src="/Assets/mark.png" alt="mark" width={20} height={20} />
             <h3 className="text-[16px] lg:text-xl font-semibold text-gray-800">Drop-Off</h3>
@@ -138,7 +138,7 @@ export default function Hero() {
 
             {/* Date Input */}
             <div>
-              <h1 className="text-[#1A202C] font-extrabold text-[16px] leading-[24px]">Date</h1>
+              <h1 className="text-[#1A202C]  mx-10 lg:mx-auto font-extrabold text-[16px] leading-[24px]">Date</h1>
               <input
                 type="date"
                 value={dropoff.date}
@@ -149,12 +149,12 @@ export default function Hero() {
 
                {/* Time Input */}
                <div>
-              <h1 className="text-[#1A202C] font-extrabold text-[16px] leading-[24px]">Time</h1>
+              <h1 className="text-[#1A202C]  font-extrabold text-[16px] leading-[24px]">Time</h1>
               <input
                 type="time"
                 value={pickup.time}
                 onChange={(e) => setPickup({ ...pickup, time: e.target.value })}
-                className="w-full p-2 border-r rounded-md text-[#90A3BF] font-bold"
+                className=" w-20 lg:w-full  p-2 border-r rounded-md text-[#90A3BF] font-bold"
               />
             </div>
           </div>
