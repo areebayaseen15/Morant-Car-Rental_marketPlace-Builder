@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IoStarSharp } from "react-icons/io5";
 import { IoIosStarOutline } from "react-icons/io";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { useUser } from "@clerk/nextjs";
 
 // Define types
 interface Review {
@@ -25,6 +26,10 @@ interface NewReview {
 }
 
 const Reviews = () => {
+  const { user } = useUser();
+  
+  // 🔹 Start with an empty array (remove previous reviews)
+
   const [reviews, setReviews] = useState<Review[]>(() => {
     if (typeof window !== "undefined") {
       const storedReviews = localStorage.getItem("reviews");
@@ -55,7 +60,6 @@ const Reviews = () => {
     }
     return [];
   });
-
   const [newReview, setNewReview] = useState<NewReview>({
     name: "",
     role: "",
@@ -63,26 +67,38 @@ const Reviews = () => {
     review: "",
   });
 
+
   const [showForm, setShowForm] = useState(false);
 
   const averageRating =
-    reviews.reduce((sum, r) => sum + r.rating, 0) / (reviews.length || 1); // Prevent division by zero
+    reviews.reduce((sum, r) => sum + r.rating, 0) / (reviews.length || 1);
+
+  // 🔹 Handle rating selection (stars clickable)
+  const handleRatingClick = (rating: number) => {
+    setNewReview((prev) => ({ ...prev, rating }));
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setNewReview({ ...newReview, [name]: name === "rating" ? Number(value) : value });
+    setNewReview((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const userProfile = user?.imageUrl || "/Assets/anonymous.png"; 
+
     if (newReview.name && newReview.role && newReview.rating && newReview.review) {
       const updatedReviews: Review[] = [
         ...reviews,
         {
-          ...newReview,
           id: reviews.length + 1,
+          name: newReview.name, // 🔹 Use user input name
+          role: newReview.role,
           date: new Date().toLocaleDateString(),
-          profile: "/Assets/DefaultProfile.png",
+          rating: newReview.rating,
+          review: newReview.review,
+          profile: userProfile,
         },
       ];
       setReviews(updatedReviews);
@@ -92,7 +108,6 @@ const Reviews = () => {
       localStorage.setItem("reviews", JSON.stringify(updatedReviews));
     }
   };
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("reviews", JSON.stringify(reviews));
@@ -125,7 +140,7 @@ const Reviews = () => {
         {reviews.map((review) => (
           <div
             key={review.id}
-            className="border-b border-gray-200 py-4 flex flex-col lg:flex-row justify-between items-start lg:items-center"
+            className="border-b border-gray-200 py-4 flex flex-col lg:flex-row items-start "
           >
             <div className="flex items-start gap-3">
               {review.profile && (
