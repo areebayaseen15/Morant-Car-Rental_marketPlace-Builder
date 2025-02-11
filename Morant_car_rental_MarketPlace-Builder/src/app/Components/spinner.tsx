@@ -1,4 +1,4 @@
-
+// spinner
 import React from 'react'
 
 interface SpinnerProps {
