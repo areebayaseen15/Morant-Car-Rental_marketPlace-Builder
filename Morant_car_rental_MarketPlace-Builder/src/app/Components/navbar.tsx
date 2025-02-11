@@ -30,10 +30,10 @@ const Navbar = () => {
         <SearchBar />
 
 {/* Mobile Profile Image */}
-<div className=" relative bottom-[50px] left-36 rounded-full md:hidden w-20 h-20 border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[7px] py-[7px]">
+<div className=" relative bottom-[50px] left-36 rounded-full md:hidden ">
 
 <Link href="/AnalyticDashboard">
-          {/* <Profile/> */}
+          <Profile/>
         </Link>
 </div>
 
@@ -46,20 +46,20 @@ const Navbar = () => {
           </div>
           </Link>
 
-          <Link href="/Notifications2">
+          <Link href="/notification">
           <div className=" relative w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
               <AiFillBell className="  text-gray-600 w-6 h-6 hover:text-red-500 cursor-pointer"  />
               <span className="absolute top-2 right-2  bg-red-500 w-2 h-2 rounded-full"></span>
             </div>
           </Link>
 
-           <Link href="/setting">
+          <Link href="/setting">
           <div className="w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
             <IoIosSettings className="text-gray-600 w-6 h-6 hover:text-blue-500 cursor-pointer" />
           </div>
           </Link>
 
-          <div className="">
+          <div className="rounded-full  w-12 h-12 border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[7px] py-[2px]">
             <Link href="/AnalyticDashboard">
             <Profile/>
 
