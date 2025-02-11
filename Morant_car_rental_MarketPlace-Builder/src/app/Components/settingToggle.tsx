@@ -9,7 +9,6 @@ const SettingsToggle = () => {
 
   return (
     <div className="relative">
-      {/* Settings Icon */}
       <div
         className="w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px] cursor-pointer"
         onClick={() => setShowSettings(!showSettings)}
