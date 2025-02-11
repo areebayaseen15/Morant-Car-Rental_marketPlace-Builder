@@ -2,7 +2,7 @@
 
 import { client } from "@/sanity/lib/client";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../Components/navbar";
 
 const Notifications = () => {
   interface Notification {
