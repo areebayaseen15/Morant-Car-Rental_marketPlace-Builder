@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 import Footer from "./Components/footer";
-import { ClerkProvider  } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "./context/ThemeContext";
 
-const publishableKey = "pk_test_Y29tbXVuYWwtbWFjYXF1ZS05My5jbGVyay5hY2NvdW50cy5kZXYk"; // Add your actual publishable key here
 
+const publishableKey = "pk_test_Y29tbXVuYWwtbWFjYXF1ZS05My5jbGVyay5hY2NvdW50cy5kZXYk"; 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,12 +23,20 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider publishableKey={publishableKey}>
-      <html lang="en">
-        <body className={`${inter.className} bg-[#F6F7F9]`}>
-          {children}
-          <Footer />
-        </body>
-      </html>
+        <ThemeProvider>
+        <html lang="en">
+          <body className={`${inter.className} bg-white text-black dark:bg-black dark:text-white`}>
+            {children}
+            <Footer />
+            <Script
+          src="//code.tidio.co/fcnfrnwjgbe2bcwwu3xgnhs7vjlbrdj3.js"
+          strategy="afterInteractive" 
+        />
+          {/* <Chatbot/> */}
+
+          </body>
+        </html>
+      </ThemeProvider>
     </ClerkProvider>
   );
 }
