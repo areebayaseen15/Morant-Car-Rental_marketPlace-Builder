@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from "react";
+import Navbar from "../Components/navbar";
 
 const ReimbursementPage = () => {
   const [formData, setFormData] = useState<{
@@ -55,8 +56,9 @@ const ReimbursementPage = () => {
 
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center py-16 bg-gray-100">
-        <div className="bg-white w-full max-w-lg p-8 rounded-xl shadow-xl">
+    <Navbar/>
+      <div className="relative min-h-screen flex items-center justify-center  py-40 dark:bg-slate-900 bg-gray-100">
+        <div className="bg-white dark:bg-slate-700 w-full max-w-lg p-8 rounded-xl shadow-xl">
           <h2 className="text-4xl font-bold text-center text-blue-500 mb-6">
             Reimbursement Request Form
           </h2>
@@ -69,13 +71,13 @@ const ReimbursementPage = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-lg font-semibold">Your Name</label>
+              <label className="block text-gray-700  text-lg font-semibold">Your Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full p-4 mt-2 bg-gray-100 border  text-gray-700 border-gray-300 rounded-lg"
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
                 placeholder="Enter your full name"
                 required
               />
@@ -87,7 +89,7 @@ const ReimbursementPage = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full p-4 mt-2 bg-gray-100 border  text-gray-700 border-gray-300 rounded-lg"
+                className="w-full p-4 mt-2 bg-gray-100  dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
                 placeholder="Enter your email address"
                 required
               />
@@ -99,7 +101,7 @@ const ReimbursementPage = () => {
                 name="amount"
                 value={formData.amount}
                 onChange={handleChange}
-                className="w-full p-4 mt-2 bg-gray-100 border  text-gray-700 border-gray-300 rounded-lg"
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
                 placeholder="Enter reimbursement amount"
                 required
               />
@@ -111,7 +113,7 @@ const ReimbursementPage = () => {
                 name="date"
                 value={formData.date}
                 onChange={handleChange}
-                className="w-full p-4 mt-2 bg-gray-100 border  text-gray-700 border-gray-300 rounded-lg"
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
                 required
               />
             </div>
@@ -121,7 +123,7 @@ const ReimbursementPage = () => {
                 name="reason"
                 value={formData.reason}
                 onChange={handleChange}
-                className="w-full p-4 mt-2 bg-gray-100 border  text-gray-700 border-gray-300 rounded-lg"
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
                 rows={4}
                 placeholder="Describe the reason for reimbursement"
                 required
@@ -133,7 +135,7 @@ const ReimbursementPage = () => {
                 type="file"
                 name="receipt"
                 onChange={handleFileChange}
-                className="w-full p-4 mt-2 bg-gray-100 border  text-gray-700 border-gray-300 rounded-lg"
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
                 required
               />
             </div>
