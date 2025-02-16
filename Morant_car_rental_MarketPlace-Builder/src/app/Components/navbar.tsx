@@ -25,8 +25,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white  dark:bg-slate-800 text-black dark:text-white fixed top-0 left-0 w-full z-50 shadow-md dark:shadow-lg">
-      <div className="xl:max-w-[1440px] h-[124px] flex flex-col md:flex-row gap-2 items-center justify-between px-4 py-4 mx-auto">
+    <div className="bg-white dark:bg-slate-800 text-black dark:text-white fixed top-0 left-0 w-full z-50 shadow-md dark:shadow-lg">
+      <div className="xl:mx-20 xl:max-w-[1440px] h-[124px] flex flex-col md:flex-row gap-2 items-center justify-between px-4 py-4 mx-auto">
         <div className="flex justify-between items-center w-full">
           <Link
             href="/"
@@ -61,7 +61,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="flex gap-5 justify-center space-y-10  md:hidden w-full bg-white px-4 py-2">
+          <div className="flex gap-5 justify-center space-y-10  md:hidden w-full bg-white dark:bg-slate-800 px-4 py-2">
               <Link href="/wishlist">
               <div className="w-11 h-11 mt-10 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
                 <FaHeart className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-blue-500 cursor-pointer" />
@@ -93,7 +93,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <Link href="/Notifications2">
+          <Link href="/notification">
             <div className="relative w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
               <AiFillBell className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-red-500 cursor-pointer" />
               <span className="absolute top-2 right-2 bg-red-500 w-2 h-2 rounded-full"></span>
@@ -107,7 +107,7 @@ const Navbar = () => {
           </Link>
 
           <Link href="/AnalyticDashboard">
-          <div className="rounded-full mt-2">
+          <div className="w-12 h-13 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] ">
             <Profile />
           </div>
           </Link>
