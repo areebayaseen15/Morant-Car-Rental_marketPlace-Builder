@@ -69,7 +69,7 @@ const Navbar = () => {
               </Link>
 
 
-            <Link href="/notification">
+            <Link href="/Notifications2">
               <div className="relative w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
                 <AiFillBell className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-red-500 cursor-pointer" />
                 <span className="absolute top-2 right-2 bg-red-500 w-2 h-2 rounded-full"></span>
