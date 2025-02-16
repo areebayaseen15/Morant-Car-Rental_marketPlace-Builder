@@ -54,7 +54,6 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
 
     setLoading(true);
 
-    // Ensure the payment form is submitted before confirming the payment
     const { error: submitError } = await elements.submit();
 
     if (submitError) {
@@ -74,7 +73,6 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     if (error) {
       setErrorMessage(error.message);
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      // Redirect to success page or show success message
       window.location.href = "/payment-success";
     }
 
@@ -101,63 +99,63 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
         <div className="mx-w-[327px] md:w-[852px] lg:max-w-[600px] xl:max-w-[700px] lg:h-auto rounded-lg space-y-8 p-10 ">
           {/* Billing section */}
           <div className="flex flex-col gap-10">
-            <div className="w-full bg-white rounded-xl shadow-md p-6 lg:p-8">
+            <div className="w-full dark:bg-slate-800 bg-white rounded-xl shadow-md p-6 lg:p-8">
               <div className="flex justify-between items-center mb-6">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-800">Billing Info</h2>
-                  <p className="text-sm font-medium text-gray-500">Please enter your billing info</p>
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-white">Billing Info</h2>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Please enter your billing info</p>
                 </div>
-                <p className="text-sm text-gray-500">Step 1 of 4</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Step 1 of 4</p>
               </div>
 
               {/* Input Fields */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
                   <input
                     type="text"
                     placeholder="Your name"
-                    className="w-full h-12 px-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-12 px-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
                   <input
                     type="text"
                     placeholder="Phone number"
-                    className="w-full h-12 px-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-12 px-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Address</label>
                   <input
                     type="text"
                     placeholder="Address"
-                    className="w-full h-12 px-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-12 px-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Town / City</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Town / City</label>
                   <input
                     type="text"
                     placeholder="Town or city"
-                    className="w-full h-12 px-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-12 px-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
             </div>
 
             {/* Rental info */}
-            <div className="w-full bg-white rounded-xl shadow-md p-6 lg:p-8">
+            <div className="w-full bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 lg:p-8">
               <div className="flex justify-between items-center mb-6">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-800">Rental Info</h2>
-                  <p className="text-sm font-medium text-gray-500">Please select your rental date</p>
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-white">Rental Info</h2>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Please select your rental date</p>
                 </div>
-                <p className="text-sm text-gray-500">Step 2 of 4</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Step 2 of 4</p>
               </div>
 
               {/* Rental Type Selection */}
@@ -170,7 +168,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
                     checked={rentalType === "pick-up"}
                     onChange={() => setRentalType("pick-up")}
                   />
-                  <span className="ml-3 text-sm font-medium text-gray-800">Pick-Up</span>
+                  <span className="ml-3 text-sm font-medium text-gray-800 dark:text-white">Pick-Up</span>
                 </label>
                 <label className="flex items-center cursor-pointer">
                   <input
@@ -180,7 +178,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
                     checked={rentalType === "drop-off"}
                     onChange={() => setRentalType("drop-off")}
                   />
-                  <span className="ml-3 text-sm font-medium text-gray-800">Drop-Off</span>
+                  <span className="ml-3 text-sm font-medium text-gray-800 dark:text-white">Drop-Off</span>
                 </label>
               </div>
 
@@ -188,9 +186,9 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Location Selection */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Location</label>
                   <select
-                    className="w-full h-12 px-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-12 px-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={rentalType === "pick-up" ? pickUp.location : dropOff.location}
                     onChange={(e) => {
                       if (rentalType === "pick-up") {
@@ -211,10 +209,10 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
 
                 {/* Date Selection */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Date</label>
                   <input
                     type="date"
-                    className="w-full h-12 px-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-12 px-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={rentalType === "pick-up" ? pickUp.date : dropOff.date}
                     onChange={(e) =>{
                       if (rentalType === "pick-up") {
@@ -228,9 +226,9 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
 
                 {/* Time Selection */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Time</label>
                   <select
-                    className="w-full h-12 px-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-12 px-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={rentalType === "pick-up" ? pickUp.time : dropOff.time}
                     onChange={(e) => {
                       if (rentalType === "pick-up") {
@@ -252,50 +250,50 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
             </div>
 
             {/* Payment section */}
-            <div className="w-full bg-white rounded-xl shadow-md p-6 lg:p-8">
+            <div className="w-full bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 lg:p-8">
               <div className="flex justify-between items-center mb-6">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-800">Payment Method</h2>
-                  <p className="text-sm font-medium text-gray-500">Please enter your payment method</p>
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-white">Payment Method</h2>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Please enter your payment method</p>
                 </div>
-                <p className="text-sm text-gray-500">Step 3 of 4</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Step 3 of 4</p>
               </div>
               {clientSecret && <PaymentElement />}
             </div>
 
             {/* Confirmation Section */}
-            <div className="w-full bg-white rounded-lg shadow-lg p-8 mt-4">
+            <div className="w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg p-8 mt-4">
               <div className="flex justify-between items-center mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-800">Confirmation</h2>
-                  <p className="text-sm text-gray-500">
+                  <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Confirmation</h2>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     We are getting to the end. Just a few clicks and your rental is ready!
                   </p>
                 </div>
-                <span className="text-sm text-gray-500">Step 4 of 4</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">Step 4 of 4</span>
               </div>
 
               {/* Terms and Conditions */}
               <div className="space-y-4 mb-8">
-                <label className="flex items-center bg-gray-100 p-4 rounded-lg cursor-pointer">
+                <label className="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer">
                   <input
                     type="checkbox"
                     checked={agreeToMarketing}
                     onChange={(e) => setAgreeToMarketing(e.target.checked)}
                     className="form-checkbox w-5 h-5 mr-4"
                   />
-                  <span className="text-gray-800 text-sm">
+                  <span className="text-gray-800 dark:text-white text-sm">
                     I agree with sending marketing and newsletter emails. No spam, promised!
                   </span>
                 </label>
-                <label className="flex items-center bg-gray-100 p-4 rounded-lg cursor-pointer">
+                <label className="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer">
                   <input
                     type="checkbox"
                     checked={agreeToTerms}
                     onChange={(e) => setAgreeToTerms(e.target.checked)}
                     className="form-checkbox w-5 h-5 mr-4"
                   />
-                  <span className="text-gray-800 text-sm">
+                  <span className="text-gray-800 dark:text-white text-sm">
                     I agree to the{" "}
                     <a href="/terms" className="text-blue-600 hover:text-blue-800">
                       terms and conditions
