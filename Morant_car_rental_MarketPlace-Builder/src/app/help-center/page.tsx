@@ -79,9 +79,9 @@ const HelpAndCenter = () => {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen px-5 py-20 md:p-20  bg-blue-50 mt-36">
-        <div className="max-w-4xl lg:mx-auto bg-white rounded-lg shadow-lg p-10">
-          <h1 className="text-3xl font-bold text-blue-800 mb-6">Help and Support Center</h1>
+      <div className="min-h-screen px-5 py-20 md:p-20  bg-blue-50 dark:bg-slate-800 mt-36">
+        <div className="max-w-4xl lg:mx-auto bg-white  dark:bg-slate-500 rounded-lg shadow-lg p-10">
+          <h1 className="text-3xl font-bold text-blue-800  mb-6">Help and Support Center</h1>
 
           <input
             type="text"
@@ -103,7 +103,7 @@ const HelpAndCenter = () => {
                     <h3 className="text-lg font-medium text-blue-600">{faq.question}</h3>
                   </button>
                   {openFAQ === index && (
-                    <p className="mt-2 text-gray-600">{faq.answer}</p>
+                    <p className="mt-2 text-gray-600 dark:text-gray-200">{faq.answer}</p>
                   )}
                 </div>
               ))}
@@ -112,10 +112,10 @@ const HelpAndCenter = () => {
 
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-blue-700 mb-4">Contact Us</h2>
-            <p className="text-gray-600 mb-2">If you have any questions or need assistance, feel free to reach out to us:</p>
-            <p className="text-gray-600">Email: Morent@carrental.com</p>
-            <p className="text-gray-600">Phone: +1 (800) 123-4567</p>
-            <p className="text-gray-600">Business Hours: Mon - Fri, 9 AM - 5 PM</p>
+            <p className="text-gray-600 mb-2 dark:text-gray-300">If you have any questions or need assistance, feel free to reach out to us:</p>
+            <p className="text-gray-600 dark:text-gray-300">Email: Morent@carrental.com</p>
+            <p className="text-gray-600 dark:text-gray-300">Phone: +1 (800) 123-4567</p>
+            <p className="text-gray-600 dark:text-gray-300">Business Hours: Mon - Fri, 9 AM - 5 PM</p>
           </section>
 
           <section>
