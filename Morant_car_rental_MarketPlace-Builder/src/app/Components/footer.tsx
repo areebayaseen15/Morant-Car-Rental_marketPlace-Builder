@@ -65,7 +65,7 @@ const Footer = () => {
               <Link href="#" className="hover:underline">
                 MORENT
               </Link>
-              . All Rights Reserved.
+              . All Rights Reserved!
             </span>
             <div className="flex mt-4 sm:justify-center sm:mt-0 gap-4 dark:font-medium dark:text-white lg:gap-11 font-semibold text-sm lg:text-base text-[#1A202C]">
               <p className="hover:underline">Privacy Policy</p>
