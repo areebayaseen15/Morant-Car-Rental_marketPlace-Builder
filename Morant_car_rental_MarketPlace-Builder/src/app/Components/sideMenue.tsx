@@ -3,11 +3,11 @@ import Image from "next/image";
 
 const SideMenu = () => {
   return (
-    <div className="w-full max-w-[360px] lg:w-[300px] h-auto lg:h-[1300px] p-5 lg:p-10 bg-white">
+    <div className="w-full max-w-[360px] lg:w-[300px] h-auto lg:h-[1300px] p-5 lg:p-10 bg-white dark:bg-gray-800">
       <div className="w-full lg:w-[176px] h-auto">
         {/* Type Section */}
         <div className="mt-0 h-auto flex flex-col gap-5">
-          <h1 className="text-[#90A3BF] text-lg md:text-xl font-semibold">
+          <h1 className="text-[#90A3BF] dark:text-gray-400 text-lg md:text-xl font-semibold">
             Type
           </h1>
           {["Sport", "SUV", "MPV", "Sedan", "Coup", "Hatchback"].map(
@@ -20,10 +20,10 @@ const SideMenu = () => {
                   type="checkbox"
                   name={`check-${index}`}
                   id={`check-${index}`}
-                  className="w-5 h-5 rounded-xl border-gray-300 border focus:ring-2 focus:ring-blue-500"
+                  className="w-5 h-5 rounded-xl border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500"
                 />
-                <p className="text-black">{type}</p>
-                <span className="text-[#90A3BF]">(10)</span>
+                <p className="text-black dark:text-white">{type}</p>
+                <span className="text-[#90A3BF] dark:text-gray-400">(10)</span>
               </div>
             )
           )}
@@ -31,7 +31,7 @@ const SideMenu = () => {
 
         {/* Capacity Section */}
         <div className="h-auto flex flex-col gap-5 mt-10">
-          <h1 className="text-[#90A3BF] text-lg md:text-xl font-semibold">
+          <h1 className="text-[#90A3BF] dark:text-gray-400 text-lg md:text-xl font-semibold">
             Capacity
           </h1>
           {["2 Persons", "4 Persons", "6 Persons", "8 or More"].map(
@@ -44,10 +44,10 @@ const SideMenu = () => {
                   type="checkbox"
                   name={`capacity-${index}`}
                   id={`capacity-${index}`}
-                  className="w-5 h-5 rounded-xl border-gray-300 border focus:ring-2 focus:ring-blue-500"
+                  className="w-5 h-5 rounded-xl border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500"
                 />
-                <p className="text-black">{capacity}</p>
-                <span className="text-[#90A3BF]">(10)</span>
+                <p className="text-black dark:text-white">{capacity}</p>
+                <span className="text-[#90A3BF] dark:text-gray-400">(10)</span>
               </div>
             )
           )}
@@ -55,7 +55,7 @@ const SideMenu = () => {
 
         {/* Price Section */}
         <div className="h-auto flex flex-col gap-5 mt-10">
-          <h1 className="text-[#90A3BF] text-lg md:text-xl font-semibold">
+          <h1 className="text-[#90A3BF] dark:text-gray-400 text-lg md:text-xl font-semibold">
             Price
           </h1>
           <Image
@@ -65,7 +65,7 @@ const SideMenu = () => {
             height={20}
             className="w-full"
           />
-          <p className="text-[#90A3BF] text-base md:text-lg font-semibold">
+          <p className="text-[#90A3BF] dark:text-gray-400 text-base md:text-lg font-semibold">
             Max. $100.00
           </p>
         </div>
