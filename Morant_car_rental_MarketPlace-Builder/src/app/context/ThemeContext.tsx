@@ -12,10 +12,14 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme") || "light";
     setTheme(storedTheme);
+
+    // ✅ Ensure dark mode is applied on page reload
     if (storedTheme === "dark") {
       document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
-  }, []);
+  }, []); // Runs only on mount
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
