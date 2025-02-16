@@ -1,4 +1,4 @@
-const notifications = {
+const notification = {
   name: "notification",
   title: "Notification",
   type: "document",
