@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Navbar from '../Components/navbar';
 
 interface Message {
   id: number;
@@ -85,8 +86,8 @@ const InboxPage = () => {
     if (newMessage.trim() === '') return; // Prevent sending empty messages
 
     const newMsg: Message = {
-      id: messages.length + 1, // Simple ID generation
-      sender: "You", // Assuming the sender is the logged-in user
+      id: messages.length + 1, 
+      sender: "You", 
       avatar: "/avatars/default-avatar.jpg", // Default avatar for the user
       preview: newMessage,
       timestamp: new Date().toISOString(),
@@ -94,19 +95,21 @@ const InboxPage = () => {
     };
 
     setMessages([...messages, newMsg]);
-    setNewMessage(''); // Clear the input after sending
+    setNewMessage(''); 
   };
 
   return (
-    <div className="relative min-h-screen p-4 md:p-8 bg-gray-100">
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div>
+      <Navbar/>
+    <div className="relative min-h-screen p-4 md:p-8 dark:bg-slate-700 bg-gray-100 mt-36">
+      <div className="max-w-4xl mx-auto dark:bg-slate-400 bg-white rounded-xl shadow-md overflow-hidden">
         <div className="bg-blue-600 p-6">
           <h1 className="text-2xl font-bold text-white">Messages</h1>
           <div className="mt-4 relative">
             <input
               type="text"
               placeholder="Search messages..."
-              className="w-full p-3 rounded-lg bg-white bg-opacity-20 placeholder-gray-200 text-white"
+              className="w-full p-3 rounded-lg dark:bg-gray-400 bg-white bg-opacity-20 placeholder-gray-200 text-white"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -238,6 +241,8 @@ const InboxPage = () => {
         )}
       </div>
     </div>
+    </div>
+
   );
 };
 
