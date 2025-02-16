@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
+import Navbar from "../Components/navbar";
 
 type Invoice = [string, string, string, string, string, string, string];
 type SalesData = { month: string; value: number };
@@ -50,34 +51,36 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div>
+      <Navbar/>
+    <div className="mt-40 p-6 bg-gray-50 dark:bg-gray-900 min-h-screen text-black dark:text-white">
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
       
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 text-sm font-medium">Customers</h3>
-          <p className="text-2xl text-black font-bold mt-2">1.456</p>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Customers</h3>
+          <p className="text-2xl text-black dark:text-white font-bold mt-2">1.456</p>
           <span className="text-green-500 text-sm">+4.5% Since last week</span>
         </div>
 
       
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 text-sm font-medium">Revenue</h3>
-          <p className="text-2xl text-black font-bold mt-2">$3.345</p>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Revenue</h3>
+          <p className="text-2xl text-black dark:text-white font-bold mt-2">$3.345</p>
           <span className="text-red-500 text-sm">-0.10% Since last week</span>
         </div>
 
       
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 text-sm font-medium">Profit</h3>
-          <p className="text-2xl text-black font-bold mt-2">60%</p>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Profit</h3>
+          <p className="text-2xl text-black dark:text-white font-bold mt-2">60%</p>
           <span className="text-red-500 text-sm">-0.2% Since last week</span>
         </div>
 
       
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 text-sm font-medium">Invoices</h3>
-          <p className="text-2xl text-black font-bold mt-2">1.135</p>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Invoices</h3>
+          <p className="text-2xl text-black dark:text-white font-bold mt-2">1.135</p>
           <span className="text-green-500 text-sm">+1.5% Since last week</span>
         </div>
       </div>
@@ -88,45 +91,45 @@ export default function Dashboard() {
           placeholder="Search invoices..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="px-4 py-2 border text-black border-gray-300 rounded-md w-full"
+          className="px-4 py-2 border text-black dark:text-white border-gray-300 dark:border-gray-600 rounded-md w-full bg-white dark:bg-gray-800"
         />
       </div>
 
     
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {/* Invoice Statistics */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-lg text-black font-semibold mb-4">Invoice Statistics</h3>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+          <h3 className="text-lg text-black dark:text-white font-semibold mb-4">Invoice Statistics</h3>
           <div className="space-y-3">
-            <div className="bg-blue-50 p-4 rounded">
-              <span className="text-gray-600">Total Paid</span>
-              <p className="text-xl  text-gray-700 font-bold">234</p>
+            <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded">
+              <span className="text-gray-600 dark:text-gray-400">Total Paid</span>
+              <p className="text-xl text-gray-700 dark:text-white font-bold">234</p>
             </div>
-            <div className="bg-red-50 p-4 rounded">
-              <span className="text-gray-600">Total Overdue</span>
-              <p className="text-xl text-gray-700 font-bold">514</p>
+            <div className="bg-red-50 dark:bg-red-900 p-4 rounded">
+              <span className="text-gray-600 dark:text-gray-400">Total Overdue</span>
+              <p className="text-xl text-gray-700 dark:text-white font-bold">514</p>
             </div>
-            <div className="bg-yellow-50 p-4 rounded">
-              <span className="text-gray-600">Total Unpaid</span>
-              <p className="text-xl text-gray-700 font-bold">345</p>
+            <div className="bg-yellow-50 dark:bg-yellow-900 p-4 rounded">
+              <span className="text-gray-600 dark:text-gray-400">Total Unpaid</span>
+              <p className="text-xl text-gray-700 dark:text-white font-bold">345</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm lg:col-span-2">
-          <h3 className="text-lg text-black font-semibold mb-4">Sales Analytics</h3>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm lg:col-span-2">
+          <h3 className="text-lg text-black dark:text-white font-semibold mb-4">Sales Analytics</h3>
           <div className="h-64">
            
-            <div className="flex items-end justify-between h-full border-b-2 border-l-2 border-gray-200 pb-4 pl-4">
+            <div className="flex items-end justify-between h-full border-b-2 border-l-2 border-gray-200 dark:border-gray-700 pb-4 pl-4">
               {salesData.map((data, index) => (
                 <div
                   key={index}
-                  className="w-8 bg-blue-200"
+                  className="w-8 bg-blue-200 dark:bg-blue-600"
                   style={{ height: `${data.value}px` }}
                 />
               ))}
             </div>
-            <div className="flex justify-between mt-2 text-sm text-gray-500">
+            <div className="flex justify-between mt-2 text-sm text-gray-500 dark:text-gray-400">
               {salesData.map((data) => (
                 <span key={data.month}>{data.month}</span>
               ))}
@@ -136,12 +139,12 @@ export default function Dashboard() {
       </div>
 
      
-      <div className="bg-white p-6 rounded-lg shadow-sm">
-        <h3 className="text-lg  text-black font-semibold mb-4">Recent Invoices</h3>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+        <h3 className="text-lg text-black dark:text-white font-semibold mb-4">Recent Invoices</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-left text-gray-500 text-sm border-b">
+              <tr className="text-left text-gray-500 dark:text-gray-400 text-sm border-b">
                 <th className="pb-3">No</th>
                 <th className="pb-3">Id Customers</th>
                 <th className="pb-3">Customer Name</th>
@@ -151,19 +154,19 @@ export default function Dashboard() {
                 <th className="pb-3">Price</th>
               </tr>
             </thead>
-            <tbody className="text-black">
+            <tbody className="text-black dark:text-white">
               {filteredInvoices.map((row, index) => (
-                <tr key={index} className="text-sm border-b text-black last:border-b-0">
+                <tr key={index} className="text-sm border-b text-black dark:text-white last:border-b-0">
                   {row.map((cell, cellIndex) => (
                     <td key={cellIndex} className="py-4">
                       {cellIndex === 5 ? (
                         <span
                           className={`px-2 py-1 rounded-full text-xs ${
                             cell === 'Paid'
-                              ? 'bg-green-100 text-green-800'
+                              ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
                               : cell === 'Pending'
-                              ? 'bg-yellow-100 text-yellow-800'
-                              : 'bg-red-100 text-red-800'
+                              ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200'
+                              : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
                           }`}
                         >
                           {cell}
@@ -180,5 +183,7 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+ </div>
+
   );
 }
