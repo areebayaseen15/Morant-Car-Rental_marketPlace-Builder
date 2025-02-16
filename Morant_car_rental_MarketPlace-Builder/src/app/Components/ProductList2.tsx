@@ -32,6 +32,7 @@ interface Car {
   brand: string;
   _type?: "product";
   _id?: string;
+  tags: string[];
   availability: {
     locations: string[];
     availableDates: string[];
@@ -79,7 +80,11 @@ const ProductListing = ({ pickup = "", dropoff = "" }: ProductListingProps) => {
     const fetchData = async () => {
       try {
         const fetchedData = await getAllCars();
-        setData(fetchedData);
+        const updatedData = fetchedData.map(car => ({
+          ...car,
+          tags: car.tags || []
+        }));
+        setData(updatedData);
         setFilteredCars(fetchedData);
         setPopularCars(fetchedData.slice(0, 4));
         setRecommendedCars(fetchedData.slice(4, 12));
