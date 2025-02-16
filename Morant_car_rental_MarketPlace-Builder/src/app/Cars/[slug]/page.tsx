@@ -15,29 +15,29 @@ interface PageProps {
 }
 
 const Page = async ({ params }: PageProps) => {
-  const { slug } = await Promise.resolve(params);// Ensure params is correctly extracted
+  const { slug } = await Promise.resolve(params);
   const query = `*[_type == "car" && slug.current == $slug][0]`;
   const car = await client.fetch(query, { slug });
   return (
-    <div>
+    <div className="bg-[#F6F7F9] dark:bg-gray-900 text-black dark:text-white">
       <Navbar />
 
       <div className="mt-0 flex flex-col lg:flex-row">
         {/* Sidebar */}
-        <div className="mt-32 hidden lg:flex lg:w-[200px]  xl:w-[300px]  bg-white shadow-lg">
+        <div className="mt-32 hidden lg:flex lg:w-[200px]  xl:w-[300px]  bg-white dark:bg-slate-800 shadow-lg">
           <SideMenue />
         </div>
 
-        <div className="mt-32 flex flex-col items-center justify-center bg-[#F6F7F9]">
+        <div className="mt-40 lg:mt-36 flex flex-col items-center justify-center bg-[#F6F7F9] dark:bg-gray-900">
           <div className="products">
             <div className="xl:mx-10 flex flex-col items-center lg:flex-row lg:justify-center  lg:gap-10 ">
               <div className="flex flex-col justify-between gap-2 lg:gap-5 ">
 
-                <div className="bg-blue-600 rounded-lg shadow-lg p-6 md:p-8 max-w-md mx-auto">
+                <div className="bg-blue-600 dark:bg-blue-800 rounded-lg shadow-lg p-6 md:p-8 max-w-md mx-auto">
                   <h2 className="text-white text-2xl md:text-3xl font-bold mb-4">
                     Sports car with the best design and acceleration
                   </h2>
-                  <p className="text-blue-100 text-sm md:text-base mb-6">
+                  <p className="text-blue-100 dark:text-blue-200 text-sm md:text-base mb-6">
                     Safety and comfort while driving a futuristic and elegant sports car
                   </p>
                   <div className="relative w-full ">
@@ -75,7 +75,7 @@ const Page = async ({ params }: PageProps) => {
                 </div>
               </div>
 
-              <div className=" w-[327px]  lg:w-[400px]  xl:w-[492px] lg:h-[508px] rounded-[10px] bg-[#FFFFFF]">
+              <div className=" w-[327px]  lg:w-[400px]  xl:w-[492px] lg:h-[508px] rounded-[10px] bg-white dark:bg-slate-800">
                 <div className="card p-2  xl:p-5 text-[32px] font-bold leading-[48px] tracking-[-3%]">
                   <div className="flex  justify-between">
                     <h1>{car?.name}</h1>
@@ -92,7 +92,7 @@ const Page = async ({ params }: PageProps) => {
                     <p className="text-[16px] ">440+ Reviewer</p>
                   </div>
 
-                  <p className="mt-3 text-[14px] font-normal leading-[40px] tracking-[-2%] text-[#596780]">
+                  <p className="mt-3 text-[14px] font-normal leading-[40px] tracking-[-2%] text-[#596780] dark:text-gray-300">
                    {car?.description}
                   </p>
 
@@ -122,7 +122,7 @@ const Page = async ({ params }: PageProps) => {
 
                   <div className="flex justify-between mt-10">
                     <div>
-                      <span className="text-[20px] font-bold leading-[25.2px] text-[#1A202C]">
+                      <span className="text-[20px] font-bold leading-[25.2px] text-[#1A202C] dark:text-white">
                         {car?.pricePerDay}
                       </span>
                       <span className="text-[14px]">days</span>
