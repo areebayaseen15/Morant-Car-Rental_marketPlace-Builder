@@ -42,10 +42,9 @@ const Navbar = () => {
 <a>
 <div className="rounded-full md:hidden  mt-2 ">
           <Profile/>
+          </div>
           </a>
-        </div>
-
-        </Link>
+</Link>
           {/* Toggle Button for Mobile */}
           <button
             className="md:hidden text-gray-600 dark:text-white"
