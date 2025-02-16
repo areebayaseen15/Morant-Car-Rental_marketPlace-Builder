@@ -1,58 +1,93 @@
 "use client";
 
-import { useState } from "react";
+import { client } from "@/sanity/lib/client";
+import { useEffect, useState } from "react";
+import Navbar from "../Components/navbar";
+import { FaHome, FaCar, FaChartBar, FaEnvelope, FaCalendarAlt, FaCog, FaQuestionCircle, FaChartArea } from "react-icons/fa";
+import { BsMoonFill } from "react-icons/bs";
+import { CiLogout } from "react-icons/ci";
+import Image from "next/image";
+import Link from 'next/link';
 
-const NotificationPage = () => {
-  const [notifications, setNotifications] = useState([
-    {
-      id: 1,
-      title: "New Car Added!",
-      message: "Check out the latest Ford Mustang available now.",
-      date: " 10:00 AM",
-      type: "info",
-      category: "New Cars",
-      isRead: false,
-    },
-    {
-      id: 2,
-      title: "Limited Time Offer",
-      message: "Get 20% off on rentals for the next 24 hours.",
-      date: " 02:00 PM",
-      type: "success",
-      category: "Discounts",
-      isRead: false,
-    },
-    {
-      id: 3,
-      title: "Service Reminder",
-      message: "Your car rental subscription is due for renewal.",
-      date: " 08:00 AM",
-      type: "warning",
-      category: "Reminders",
-      isRead: true,
-    },
-    {
-      id: 4,
-      title: "Special Offer",
-      message: "There's a special offer on car rentals for this week!",
-      date: " 10:00 AM",
-      type: "warning",
-      category: "Promotions",
-      isRead: false,
-    },
-    {
-      id: 5,
-      title: "New Luxury Cars",
-      message: "New luxury cars available for rent. Check them out!",
-      date: "03:45 PM",
-      type: "info",
-      category: "New Cars",
-      isRead: false,
-    },
-  ]);
+const Notifications = () => {
+  interface Notification {
+    id: string;
+    title: string;
+    message: string;
+    time: string;
+    isRead: boolean;
+  }
 
-  // Mark a notification as read
-  const markAsRead = (id: number) => {
+  interface FetchedNotification {
+    _id: string;
+    title: string;
+    message: string;
+    date: string;
+  }
+
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [darkMode, setDarkMode] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      const data: FetchedNotification[] = await client.fetch(
+        `*[_type == "notification"] | order(date desc) {
+          _id,
+          title,
+          message,
+          date
+        }`
+      );
+
+      const formattedData: Notification[] = data.map((notification) => ({
+        id: notification._id,
+        title: notification.title,
+        message: notification.message,
+        time: new Date(notification.date).toLocaleString(),
+        isRead: false, // Initialize as unread
+      }));
+
+      setNotifications(formattedData);
+    };
+
+    fetchNotifications();
+
+    // GROQ Subscription for real-time updates
+    const subscription = client
+      .listen<FetchedNotification>(
+        `*[_type == "notification"] | order(date desc) {
+          _id,
+          title,
+          message,
+          date
+        }`
+      )
+      .subscribe((update) => {
+        if (update.result) {
+          const newNotification: Notification = {
+            id: update.result._id,
+            title: update.result.title,
+            message: update.result.message,
+            time: new Date(update.result.date).toLocaleString(),
+            isRead: false,
+          };
+          setNotifications((prev) => [newNotification, ...prev]);
+        }
+      });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark"); // Add dark mode globally
+    } else {
+      document.documentElement.classList.remove("dark"); // Remove dark mode
+    }
+  }, [darkMode]);
+
+  const markAsRead = (id: string) => {
     setNotifications((prev) =>
       prev.map((notification) =>
         notification.id === id ? { ...notification, isRead: true } : notification
@@ -60,80 +95,116 @@ const NotificationPage = () => {
     );
   };
 
-  // Remove a notification
-  const removeNotification = (id: number) => {
+  const deleteNotification = (id: string) => {
     setNotifications((prev) => prev.filter((notification) => notification.id !== id));
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-blue-100 to-purple-100 py-10 px-6">
-      <div className="container mx-auto max-w-3xl">
-        {/* Page Title */}
-        <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
-          Notifications
-        </h1>
+    <div>
+      <Navbar />
+      <div className="mt-32 max-w-[1440px] mx-auto p-4 flex flex-col lg:flex-row gap-6 dark:bg-slate-700 bg-[#F6F7F9]">
+        {/* Sidebar Toggle Button for Small Screens */}
+        <button
+          className="lg:hidden mb-4 p-2 bg-blue-600 text-white rounded-md"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          {isSidebarOpen ? "Close Menu" : "Open Menu"}
+        </button>
 
-        {/* Empty State */}
-        {notifications.length === 0 ? (
-          <div className="flex justify-center items-center">
-            <p className="text-xl font-semibold text-gray-500">
-              🎉 You are all caught up! No new notifications.
-            </p>
-          </div>
-        ) : (
-          <ul className="space-y-6">
-            {notifications.map((notification) => (
-              <li
-                key={notification.id}
-                className={`relative p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-xl ${
-                  notification.isRead
-                    ? "bg-gray-50 border-l-4 border-gray-300"
-                    : "bg-white border-l-4 border-blue-500"
-                }`}
-              >
-                {/* Notification Details */}
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-800">
-                      {notification.title}
-                    </h2>
-                    <p className="text-gray-600 mt-1">{notification.message}</p>
-                    <p className="text-xs text-gray-500 mt-2">
-                      {notification.category} • {notification.date}
-                    </p>
-                  </div>
-                  {/* Action Buttons */}
-                  <div className="flex space-x-4">
-                    {!notification.isRead && (
-                      <button
-                        onClick={() => markAsRead(notification.id)}
-                        className="px-4 py-2 text-sm font-semibold bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-                      >
-                        Mark as Read
-                      </button>
-                    )}
-                    <button
-                      onClick={() => removeNotification(notification.id)}
-                      className="px-4 py-2 text-sm font-semibold bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-
-                {/* New Notification Badge */}
-                {!notification.isRead && (
-                  <span className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
-                    New
-                  </span>
-                )}
+        {/* Sidebar/Main Menu */}
+        <div className={`lg:w-[286px] w-full dark:bg-slate-900 bg-white p-4 rounded-lg flex flex-col justify-between shadow-md ${isSidebarOpen ? 'block' : 'hidden'} lg:block`}>
+          <div>
+            <h2 className="text-sm font-semibold text-[#94A7CB] dark:text-white opacity-40 mb-4">MAIN MENU</h2>
+            <ul className="space-y-6 font-medium text-base text-[#94A7CB] dark:text-white">
+              <li className="flex items-center gap-4 bg-[#3563E9] text-white px-4 py-2 rounded-md">
+                <FaHome />
+                <Link href="/UserDashboard">Dashboard</Link>
               </li>
-            ))}
-          </ul>
-        )}
+              <li className="flex items-center gap-4 hover:bg-[#3563E9] hover:text-white px-4 py-2 rounded-md">
+                <FaCar />
+                <Link href="/car-rent">Car Rent</Link>
+              </li>
+              <li className="flex items-center gap-4 hover:bg-[#3563E9] hover:text-white px-4 py-2 rounded-md">
+                <FaChartBar />
+                <Link href="/insight">Insight</Link>
+              </li>
+              <li className="flex items-center gap-4 hover:bg-[#3563E9] hover:text-white px-4 py-2 rounded-md">
+                <FaChartArea />
+                <Link href="/reimburse">Reimburse</Link>
+              </li>
+              <li className="flex items-center gap-4 hover:bg-[#3563E9] hover:text-white px-4 py-2 rounded-md">
+                <FaEnvelope />
+                <Link href="inbox">Inbox</Link>
+              </li>
+              <li className="flex items-center gap-4 hover:bg-[#3563E9] hover:text-white px-4 py-2 rounded-md">
+                <FaCalendarAlt />
+                <Link href="/calendar">Calendar</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Preferences */}
+          <div className="mt-10">
+            <h2 className="text-sm font-semibold text-[#94A7CB] dark:text-white opacity-40 mb-4">PREFERENCE</h2>
+            <ul className="space-y-8 font-medium text-base text-[#94A7CB] dark:text-white">
+              <li className="flex items-center gap-4 hover:text-[#3B82F6] dark:text-white">
+                <FaCog />
+                <Link href="/setting">Settings</Link>
+              </li>
+              <li className="flex items-center gap-4 hover:text-[#3B82F6]">
+                <FaQuestionCircle />
+                <Link href="/help-center">Help & Center</Link>
+              </li>
+              <li className="flex items-center justify-between cursor-pointer" onClick={() => setDarkMode(!darkMode)}>
+                <div className="flex items-center gap-4">
+                  <BsMoonFill />
+                  <span>Dark Mode</span>
+                </div>
+                <div className="w-10 h-5 flex items-center bg-gray-300 dark:bg-blue-600 rounded-full p-1">
+                  <div
+                    className={`w-4 h-4 rounded-full bg-white shadow-md transform duration-300 ${darkMode ? "translate-x-5" : ""}`}
+                  ></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Log Out */}
+          <div className="mt-auto">
+            <button className="flex items-center gap-2 text-[#94A7CB] dark:text-red-600 hover:text-[#3B82F6]">
+              <CiLogout />
+              <span>Log Out</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col lg:flex-row gap-6">
+          {/* Notifications List */}
+          <div className="flex-1 p-6 rounded-lg shadow-md dark:bg-slate-900 bg-white">
+            <h2 className="text-lg font-bold mb-4">Notifications</h2>
+            <ul>
+              {notifications.map((notification) => (
+                <li key={notification.id} className={`p-4 mb-4 rounded-lg ${notification.isRead ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-100 dark:bg-blue-900'}`}>
+                  <h3 className="text-md font-semibold">{notification.title}</h3>
+                  <p className="text-sm">{notification.message}</p>
+                  <p className="text-xs text-gray-500">{notification.time}</p>
+                  {!notification.isRead && (
+                    <button
+                      className="mt-2 text-blue-500 hover:underline"
+                      onClick={() => markAsRead(notification.id)}
+                    >
+                      Mark as Read
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default NotificationPage;
+export default Notifications;
