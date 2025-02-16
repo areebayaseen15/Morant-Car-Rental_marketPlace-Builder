@@ -117,13 +117,13 @@ const Reviews = () => {
   return (
     <div className="flex flex-col items-center">
       {/* Reviews Section */}
-      <div className="w-[90%] max-w-[960px] bg-white shadow-lg p-5 rounded-lg mt-10">
+      <div className="w-[90%] max-w-[960px] bg-white dark:bg-slate-800 shadow-lg p-5 rounded-lg mt-10">
         <div className="flex justify-between items-center mb-5">
-          <h2 className="text-[20px] font-bold">Reviews</h2>
+          <h2 className="text-[20px] font-bold text-gray-800 dark:text-white">Reviews</h2>
           <span className="bg-[#3563E9] text-white px-4 py-1 rounded-lg">{reviews.length}</span>
         </div>
         <div className="flex items-center mb-5">
-          <h3 className="text-[16px] font-medium">Average Rating:</h3>
+          <h3 className="text-[16px] font-medium text-gray-800 dark:text-white">Average Rating:</h3>
           <div className="flex ml-2">
             {[...Array(5)].map((_, i) =>
               i < Math.round(averageRating) ? (
@@ -133,14 +133,14 @@ const Reviews = () => {
               )
             )}
           </div>
-          <span className="ml-2 text-gray-500">({averageRating.toFixed(1)})</span>
+          <span className="ml-2 text-gray-500 dark:text-gray-300">({averageRating.toFixed(1)})</span>
         </div>
 
         {/* Reviews List */}
         {reviews.map((review) => (
           <div
             key={review.id}
-            className="border-b border-gray-200 py-4 flex flex-col lg:flex-row items-start "
+            className="border-b border-gray-200 dark:border-gray-700 py-4 flex flex-col lg:flex-row items-start"
           >
             <div className="flex items-start gap-3">
               {review.profile && (
@@ -153,9 +153,9 @@ const Reviews = () => {
                 />
               )}
               <div>
-                <h4 className="font-bold text-[16px]">{review.name}</h4>
-                <p className="text-gray-500 text-[12px]">{review.role}</p>
-                <p className="text-gray-400 text-[12px]">{review.date}</p>
+                <h4 className="font-bold text-[16px] text-gray-800 dark:text-white">{review.name}</h4>
+                <p className="text-gray-500 dark:text-gray-300 text-[12px]">{review.role}</p>
+                <p className="text-gray-400 dark:text-gray-500 text-[12px]">{review.date}</p>
               </div>
             </div>
             <div className="flex flex-col ml-20 items-start">
@@ -168,7 +168,7 @@ const Reviews = () => {
                   )
                 )}
               </div>
-              <p className="mt-3 lg:mt-0 text-gray-700 text-[14px] w-full">{review.review}</p>
+              <p className="mt-3 lg:mt-0 text-gray-700 dark:text-gray-300 text-[14px] w-full">{review.review}</p>
             </div>
           </div>
         ))}
@@ -182,8 +182,8 @@ const Reviews = () => {
 
         {/* Review Form */}
         {showForm && (
-          <form className="w-full bg-white mt-5 p-5 rounded-lg" onSubmit={handleSubmit}>
-            <h3 className="text-[18px] font-bold mb-4">Submit a Review</h3>
+          <form className="w-full bg-white dark:bg-slate-800 mt-5 p-5 rounded-lg" onSubmit={handleSubmit}>
+            <h3 className="text-[18px] font-bold mb-4 text-gray-800 dark:text-white">Submit a Review</h3>
             <div className="flex flex-col gap-3">
               <input
                 type="text"
@@ -191,7 +191,7 @@ const Reviews = () => {
                 placeholder="Your Name"
                 value={newReview.name}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-2 rounded-lg"
+                className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white"
               />
               <input
                 type="text"
@@ -199,13 +199,13 @@ const Reviews = () => {
                 placeholder="Your Role"
                 value={newReview.role}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-2 rounded-lg"
+                className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white"
               />
               <select
                 name="rating"
                 value={newReview.rating}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-2 rounded-lg"
+                className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white"
               >
                 <option value="0">Select Rating</option>
                 {[...Array(5)].map((_, i) => (
@@ -219,7 +219,7 @@ const Reviews = () => {
                 placeholder="Write your review"
                 value={newReview.review}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-2 rounded-lg"
+                className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white"
               ></textarea>
               <button type="submit" className="bg-[#3563E9] text-white px-4 py-2 rounded-lg">
                 Submit
