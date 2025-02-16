@@ -4,6 +4,7 @@ import { client } from "@/sanity/lib/client"; // Sanity client
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import Navbar from "../Components/navbar";
 
 interface WishlistItem {
   _id: string;
@@ -14,8 +15,8 @@ interface WishlistItem {
 }
 
 const Wishlist = () => {
-  const { user } = useUser(); // Get current logged-in user
-  const [wishlist, setWishlist] = useState<WishlistItem[]>([]); // State to hold wishlist items
+  const { user } = useUser(); // current logged-in user
+  const [wishlist, setWishlist] = useState<WishlistItem[]>([]); 
 
   // Fetch wishlist data on component mount
   useEffect(() => {
@@ -79,7 +80,9 @@ const Wishlist = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 text-center mt-10">My Wishlist</h1>
+      <Navbar/>
+      
+      <h1 className="text-2xl mt-40 font-bold mb-4 text-center">My Wishlist</h1>
       {wishlist.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {wishlist.map((item) => (
