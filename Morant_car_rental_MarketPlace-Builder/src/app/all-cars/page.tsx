@@ -74,25 +74,25 @@ export default function AllCars() {
   return (
     <div>
       <Navbar />
-      <div className=" mt-32 flex flex-col lg:flex-row">
+      <div className="mt-32 flex flex-col lg:flex-row">
         {/* Sidebar */}
         <div
-          className={` mt-28 lg:mt-0 fixed lg:static inset-0 lg:inset-auto bg-black lg:bg-transparent bg-opacity-50 z-20 lg:z-auto transition-transform transform ${
+          className={`mt-28 lg:mt-0 fixed lg:static inset-0 lg:inset-auto bg-black lg:bg-transparent bg-opacity-50 z-20 lg:z-auto transition-transform transform ${
             sidebarVisible ? "translate-x-0" : "-translate-x-full"
           } lg:translate-x-0`}
         >
-          <div className="w-[200px] xl:w-[300px] bg-white shadow-lg h-full p-5 lg:p-10">
+          <div className="w-[200px] xl:w-[300px] bg-white dark:bg-gray-800 shadow-lg h-full p-5 lg:p-10">
             {/* Close Button (small screens only) */}
             <button
               onClick={toggleSidebar}
-              className="absolute top-5 right-5 text-xl lg:hidden"
+              className="absolute top-5 right-5 text-xl lg:hidden text-white"
             >
               <FiX />
             </button>
 
             {/* Type Filter */}
             <div className="flex flex-col gap-5">
-              <h1 className="text-[#90A3BF] text-lg font-semibold">Type</h1>
+              <h1 className="text-[#90A3BF] dark:text-gray-400 text-lg font-semibold">Type</h1>
               {["Sport", "SUV", "MPV", "Sedan", "Coup", "Hatchback", "Electric", "Hybrid", "Gasoline", "Diesel"].map((type) => (
                 <div key={type} className="flex items-center gap-3">
                   <input
@@ -107,14 +107,14 @@ export default function AllCars() {
                     }}
                     className="w-5 h-5"
                   />
-                  <p>{type}</p>
+                  <p className="text-black dark:text-white">{type}</p>
                 </div>
               ))}
             </div>
 
             {/* Capacity Filter */}
             <div className="flex flex-col gap-5 mt-10">
-              <h1 className="text-[#90A3BF] text-lg font-semibold">Capacity</h1>
+              <h1 className="text-[#90A3BF] dark:text-gray-400 text-lg font-semibold">Capacity</h1>
               {["2 People", "4 People", "6 People", "8 or More"].map((capacity) => (
                 <div key={capacity} className="flex items-center gap-3">
                   <input
@@ -129,14 +129,14 @@ export default function AllCars() {
                     }}
                     className="w-5 h-5"
                   />
-                  <p>{capacity}</p>
+                  <p className="text-black dark:text-white">{capacity}</p>
                 </div>
               ))}
             </div>
 
             {/* Price Filter */}
             <div className="flex flex-col gap-5 mt-10">
-              <h1 className="text-[#90A3BF] text-lg font-semibold">Price</h1>
+              <h1 className="text-[#90A3BF] dark:text-gray-400 text-lg font-semibold">Price</h1>
               <input
                 type="range"
                 min="$70"
@@ -146,7 +146,7 @@ export default function AllCars() {
                 onChange={(e) => setMaxPrice(String(e.target.value))}
                 className="w-full"
               />
-              <p>Max. {maxPrice}</p>
+              <p className="text-black dark:text-white">Max. {maxPrice}</p>
             </div>
           </div>
         </div>
@@ -154,23 +154,20 @@ export default function AllCars() {
         {/* Sidebar Toggle Button  */}
         <button
           onClick={toggleSidebar}
-          className="lg:hidden absolute top-10 left-5 p-3 mt-24 rounded-full shadow-md"
+          className="lg:hidden absolute top-10 left-5 p-3 mt-24 rounded-full shadow-md text-white bg-blue-600 dark:bg-blue-700"
         >
-        Filter Cars
+          Filter Cars
         </button>
 
         {/* Main Content */}
-        <div className="flex-1 mx-5 lg:mx-10 bg-[#F6F7F9]">
-              {/* 🚗 Pickup and Drop-off Cards with Arrow Button in Between */}
-         
-          
+        <div className="flex-1 mx-5 lg:mx-10 bg-[#F6F7F9] dark:bg-gray-900">
           <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {filteredCars.length > 0 ? (
               filteredCars.map((item: ProductData, i: number) => (
                 <Cards key={i} item={item} />
               ))
             ) : (
-              <p>No cars match your selected filters.</p>
+              <p className="text-black dark:text-white">No cars match your selected filters.</p>
             )}
           </div>
         </div>
