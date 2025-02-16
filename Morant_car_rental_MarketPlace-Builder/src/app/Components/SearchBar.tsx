@@ -36,7 +36,7 @@ const SearchBar = () => {
   }, [searchQuery, products]);
 
   return (
-    <div className="fixed top-2 lg:top-7 mx-10 sm:mx-16 md:mx-44 lg:mx-0 left-0 w-[300px] lg:w-full z-50">
+    <div className="fixed top-2 lg:top-7 mx-10 sm:mx-16 md:mx-44 lg:mx-0 left-0 w-[300px] lg:w-full z-50 dark:text-white">
       <div className="relative flex items-center gap-4 mx-auto mt-16 md:mt-10 lg:mt-5 px-4 py-2 rounded-full border border-gray-300 max-w-[492px]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
