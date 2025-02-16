@@ -13,6 +13,7 @@ import { client } from "@/sanity/lib/client";
 import { IoHeart } from "react-icons/io5";
 
 export interface ProductData {
+  tags: string[];
   oldPrice?: string;
   newPrice?: string;
   model?: string;
@@ -122,14 +123,14 @@ const Cards = ({ item }: { item: ProductData }) => {
   };
 
   return (
-    <div className="flex flex-col transform transition-transform duration-300 hover:scale-105 bg-white shadow-lg border border-gray-200 rounded-lg p-5 max-w-[350px] lg:max-w-[400px]">
+    <div className="flex flex-col transform transition-transform duration-300 hover:scale-105 dark:bg-slate-700 bg-white shadow-lg border border-gray-200 rounded-lg p-5 max-w-[350px] lg:max-w-[400px]">
       {/* Title and Model */}
       <div className="flex justify-between">
         <div className="flex-col">
-          <h1 className="text-[16px] leading-[24px] lg:text-[20px] text-[#1A202C] lg:leading-[30px] tracking-[-2%] font-bold">
+          <h1 className="text-[16px] leading-[24px] lg:text-[20px] dark:text-white text-[#1A202C] lg:leading-[30px] tracking-[-2%] font-bold">
             {item?.name}
           </h1>
-          <p className="text-[12px] leading-[15.12px] text-[#90A3BF] lg:text-[14px] lg:leading-[21px] tracking-[-2%] font-bold">
+          <p className="text-[12px] leading-[15.12px] dark:text-blue-200 text-[#90A3BF] lg:text-[14px] lg:leading-[21px] tracking-[-2%] font-bold">
             {item?.type}
           </p>
         </div>
@@ -143,7 +144,7 @@ const Cards = ({ item }: { item: ProductData }) => {
             />
           ) : (
             <RiPokerHeartsLine
-              className="text-2xl cursor-pointer text-[#90A3BF] hover:text-red-500"
+              className="text-2xl cursor-pointer dark:text-blue-200 text-[#90A3BF] hover:text-red-500"
               onClick={() => addToWishlist(item?._id)}
             />
           )}
@@ -162,7 +163,7 @@ const Cards = ({ item }: { item: ProductData }) => {
               className="object-cover"
             />
           ) : (
-            <div className="w-[256px] h-[196px] bg-gray-200 flex items-center justify-center">
+            <div className="w-[256px] h-[196px] dark:bg-gray-400 bg-gray-200 flex items-center justify-center">
               <span className="text-gray-500">Image not available</span>
             </div>
           )}
@@ -170,7 +171,7 @@ const Cards = ({ item }: { item: ProductData }) => {
       </div>
 
       {/* Features */}
-      <div className="flex flex-col lg:flex-row justify-between md:justify-start md:gap-4 lg:gap-0 xl:gap-3 mb-4">
+      <div className="flex flex-col lg:flex-row justify-between md:justify-start  md:gap-4 lg:gap-0 xl:gap-3 mb-4">
         <div className="flex items-center gap-2 lg:gap-0 xl:gap-2">
           <FaGasPump className="text-sm md:text-lg text-[#90A3BF]" />
           <span className="text-xs md:text-sm lg:text-base">{item?.fuelCapacity}</span>
@@ -188,7 +189,7 @@ const Cards = ({ item }: { item: ProductData }) => {
       {/* Price and Button */}
       <div className="flex justify-between items-center">
         <div>
-          <span className="text-base md:text-lg lg:text-xl font-bold text-[#1A202C]">
+          <span className="text-base md:text-lg lg:text-xl font-bold dark:text-white text-[#1A202C]">
             {item?.pricePerDay}
           </span>
           <span className ="text-gray-500"> /day</span>
