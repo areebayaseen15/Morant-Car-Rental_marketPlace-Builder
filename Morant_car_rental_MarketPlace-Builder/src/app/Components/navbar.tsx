@@ -8,9 +8,7 @@ import { IoIosSettings } from "react-icons/io";
 import Link from "next/link";
 import Profile from "./Profile";
 import SearchBar from "./SearchBar";
-import DarkModeToggle from "./DarkMode";
-import SettingsToggle from "./settingToggle";
-import { UserProfile } from "@clerk/nextjs";
+
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -30,18 +28,21 @@ const Navbar = () => {
         <div className="flex justify-between items-center w-full">
           <Link
             href="/"
-            className={`${plusJakartaSans.className} cursor-pointer lg:ml-[50px] text-[24px] md:text-[32px] leading-[48px] tracking-[-3%] font-bold text-blue-500`}
+           
           >
-            <div>MORENT</div>
+            <a>
+            <div  className={`${plusJakartaSans.className} cursor-pointer lg:ml-[50px] text-[24px] md:text-[32px] leading-[48px] tracking-[-3%] font-bold text-blue-500`}>MORENT</div>
+            </a>
           </Link>
         
 {/* Mobile Profile Image */}
 <div className="flex gap-5 ">
 
 <Link href="/AnalyticDashboard">
-
+<a>
 <div className="rounded-full md:hidden  mt-2 ">
           <Profile/>
+          </a>
         </div>
 
         </Link>
@@ -63,23 +64,29 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="flex gap-5 justify-center space-y-10  md:hidden w-full bg-white dark:bg-slate-800 px-4 py-2">
               <Link href="/wishlist">
+              <a>
               <div className="w-11 h-11 mt-10 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
                 <FaHeart className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-blue-500 cursor-pointer" />
               </div>
+              </a>
               </Link>
 
 
             <Link href="/notification">
+            <a>
               <div className="relative w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
                 <AiFillBell className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-red-500 cursor-pointer" />
                 <span className="absolute top-2 right-2 bg-red-500 w-2 h-2 rounded-full"></span>
               </div>
+              </a>
             </Link>
 
             <Link href="/setting">
+            <a>
               <div className="w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
                 <IoIosSettings className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-blue-500 cursor-pointer" />
               </div>
+              </a>
             </Link>
 
           </div>
@@ -87,29 +94,38 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link href="/wishlist">
-            <div className="w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
-              <FaHeart className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-red-500 cursor-pointer" />
-            </div>
-          </Link>
+        <Link href="/wishlist">
+  <a>
+    <div className="w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
+      <FaHeart className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-red-500 cursor-pointer" />
+    </div>
+  </a>
+</Link>
+
 
           <Link href="/notification">
+          <a>
             <div className="relative w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
               <AiFillBell className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-red-500 cursor-pointer" />
               <span className="absolute top-2 right-2 bg-red-500 w-2 h-2 rounded-full"></span>
             </div>
+            </a>
           </Link>
 
           <Link href="/setting">
+          <a>
             <div className="w-11 h-11 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
               <IoIosSettings className="dark:bg-black text-gray-600 dark:text-blue-600 w-6 h-6 hover:text-blue-500 cursor-pointer" />
             </div>
+            </a>
           </Link>
 
           <Link href="/AnalyticDashboard">
+          <a>
           <div className="w-12 h-13 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] ">
             <Profile />
           </div>
+          </a>
           </Link>
           </div>
         </div>
