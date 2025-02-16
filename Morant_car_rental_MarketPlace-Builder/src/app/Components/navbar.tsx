@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 
 import { useState } from "react";
 import { Plus_Jakarta_Sans } from "next/font/google";
@@ -18,11 +18,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsMenuOpen(!isMenuOpen);
+  // };
 
   return (
     <div className="bg-white dark:bg-slate-800 text-black dark:text-white fixed top-0 left-0 w-full z-50 shadow-md dark:shadow-lg">
@@ -60,7 +60,7 @@ const Navbar = () => {
         <SearchBar />
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
+{/*         {isMenuOpen && (
           <div className="flex gap-5 justify-center space-y-10  md:hidden w-full bg-white dark:bg-slate-800 px-4 py-2">
               <Link href="/wishlist">
               <div className="w-11 h-11 mt-10 rounded-full border-[1px] border-[#C3D4E9] border-opacity-[80%] px-[10px] py-[10px]">
@@ -84,7 +84,7 @@ const Navbar = () => {
 
           </div>
         )}
-
+ */}
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4">
           <Link href="/wishlist">
