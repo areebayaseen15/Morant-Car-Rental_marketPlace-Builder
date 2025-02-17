@@ -179,4 +179,4 @@ const Payment = ({ params }: PageProps) => {
   );
 };
 
-export default Payment;
+export default Payment
