@@ -100,4 +100,4 @@ const CarRent = () => {
   );
 };
 
-export default CarRent;
+export default CarRent
