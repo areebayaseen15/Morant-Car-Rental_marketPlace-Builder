@@ -20,7 +20,7 @@ const Profile = () => {
             appearance={{
               elements: {
                 avatarBox: "w-12 h-12 relative right-2 bottom-1",
-                userButtonBox:"w-10 h-12", 
+                userButtonBox:"w-10 h-11 relative top-2 left-1", 
               },
             }}
           />
