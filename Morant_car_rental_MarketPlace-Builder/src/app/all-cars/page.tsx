@@ -159,7 +159,7 @@ export default function AllCars() {
           Filter Cars
         </button>
 
-        {/* Main Content */}
+      
         <div className="flex-1 mx-5 lg:mx-10 bg-[#F6F7F9] dark:bg-gray-900">
           <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {filteredCars.length > 0 ? (
@@ -173,5 +173,5 @@ export default function AllCars() {
         </div>
       </div>
     </div>
-  )
+  );
 }
