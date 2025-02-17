@@ -2,10 +2,12 @@
 
 import React from 'react'
 import Spinner from './Components/spinner'
+import Navbar from './Components/navbar'
 
 const Loader = () => {
   return (
     <div>
+      <Navbar/>
       <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <div className="space-y-8">
       
