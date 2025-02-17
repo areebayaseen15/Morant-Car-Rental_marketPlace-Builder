@@ -1,189 +1,164 @@
-"use client"
-import { useState, useEffect } from "react";
+'use client';
+import React, { useState } from "react";
 import Navbar from "../Components/navbar";
 
-type Invoice = [string, string, string, string, string, string, string];
-type SalesData = { month: string; value: number };
+const ReimbursementPage = () => {
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    amount: string;
+    date: string;
+    reason: string;
+    receipt: File | null;
+  }>({
+    name: "",
+    email: "",
+    amount: "",
+    date: "",
+    reason: "",
+    receipt: null,
+  });
 
-const fetchInvoices = (): Invoice[] => [
-  ['1', '#068499', 'Ali Khan', 'Koenigsegg', '21/07/2022 08:21', 'Paid', '$101'],
-  ['2', '#068500', 'Saira Bano', 'Nissan GT - R', '21/07/2022 08:21', 'Pending', '$144'],
-  ['3', '#068501', 'Imran Ali', 'Rolls-Royce All New Rush', '21/07/2022 08:21', 'Paid', '$121'],
-  ['4', '#068502', 'Fatima Khan', 'CR - V', '21/07/2022 08:21', 'Overdue', '$300'],
-  ['5', '#068503', 'Zara Ahmed', 'All New Terios', '22/07/2022 09:15', 'Paid', '$275'],
-  ['6', '#068504', 'Ahmed Raza', 'MG ZX Exclusive', '22/07/2022 09:30', 'Pending', '$520'],
-  ['7', '#068505', 'Nida Shah', 'New MG ZS', '23/07/2022 11:00', 'Paid', '$410'],
-  ['8', '#068506', 'Umar Hassan', 'MG ZX Excite', '23/07/2022 11:20', 'Overdue', '$680'],
-  ['9', '#068507', 'Sara Bano', 'New MG ZS', '24/07/2022 14:00', 'Pending', '$550'],
-];
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
-const fetchSalesData = (): SalesData[] => [
-  { month: 'Jan', value: 100 },
-  { month: 'Feb', value: 80 },
-  { month: 'Mar', value: 60 },
-  { month: 'Apr', value: 40 },
-  { month: 'May', value: 20 },
-  { month: 'Jun', value: 50 },
-  { month: 'Jul', value: 70 },
-  { month: 'Aug', value: 30 },
-  { month: 'Sep', value: 90 },
-  { month: 'Oct', value: 60 },
-  { month: 'Nov', value: 100 },
-  { month: 'Dec', value: 110 },
-];
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-export default function Dashboard() {
-  const [invoices, setInvoices] = useState<Invoice[]>([]);
-  const [salesData, setSalesData] = useState<SalesData[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    setFormData({
+      ...formData,
+      receipt: file,
+    });
+  };
 
-  
-  useEffect(() => {
-    setInvoices(fetchInvoices());
-    setSalesData(fetchSalesData());
-  }, []);
-
-  
-  const filteredInvoices = invoices.filter(
-    (invoice) =>
-      invoice[2].toLowerCase().includes(searchQuery.toLowerCase()) ||
-      invoice[5].toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Reimbursement Request Submitted:", formData);
+    setSubmissionSuccess(true);
+    setFormData({
+      name: "",
+      email: "",
+      amount: "",
+      date: "",
+      reason: "",
+      receipt: null,
+    });
+    setTimeout(() => setSubmissionSuccess(false), 3000); // Hide message after 3 seconds
+  };
 
   return (
-    <div>
-      <Navbar/>
-    <div className="mt-40 p-6 bg-gray-50 dark:bg-gray-900 min-h-screen text-black dark:text-white">
+    <>
+    <Navbar/>
+      <div className="relative min-h-screen flex items-center justify-center  py-40 dark:bg-slate-900 bg-gray-100">
+        <div className="bg-white dark:bg-slate-700 w-full max-w-lg p-8 rounded-xl shadow-xl">
+          <h2 className="text-4xl font-bold text-center text-blue-500 mb-6">
+            Reimbursement Request Form
+          </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-      
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Customers</h3>
-          <p className="text-2xl text-black dark:text-white font-bold mt-2">1.456</p>
-          <span className="text-green-500 text-sm">+4.5% Since last week</span>
-        </div>
+          {submissionSuccess && (
+            <div className="mb-4 p-4 bg-green-100 text-green-800 rounded-lg">
+              Your reimbursement request has been submitted successfully!
+            </div>
+          )}
 
-      
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Revenue</h3>
-          <p className="text-2xl text-black dark:text-white font-bold mt-2">$3.345</p>
-          <span className="text-red-500 text-sm">-0.10% Since last week</span>
-        </div>
-
-      
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Profit</h3>
-          <p className="text-2xl text-black dark:text-white font-bold mt-2">60%</p>
-          <span className="text-red-500 text-sm">-0.2% Since last week</span>
-        </div>
-
-      
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-          <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">Invoices</h3>
-          <p className="text-2xl text-black dark:text-white font-bold mt-2">1.135</p>
-          <span className="text-green-500 text-sm">+1.5% Since last week</span>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-gray-700  text-lg font-semibold">Your Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100  dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Amount</label>
+              <input
+                type="number"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                placeholder="Enter reimbursement amount"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Date of Expense</label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Reason for Reimbursement</label>
+              <textarea
+                name="reason"
+                value={formData.reason}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                rows={4}
+                placeholder="Describe the reason for reimbursement"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Receipt Upload</label>
+              <input
+                type="file"
+                name="receipt"
+                onChange={handleFileChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div className="flex justify-center space-x-4">
+              <button
+                type="button"
+                className="w-full md:w-auto px-6 py-3 bg-gray-800 text-white rounded-full text-lg font-semibold hover:bg-gray-900 transition duration-300 ease-in-out"
+                onClick={() => setFormData({ name: "", email: "", amount: "", date: "", reason: "", receipt: null })}
+              >
+                Reset
+              </button>
+              <button
+                type="submit"
+                className="w-full md:w-auto px-6 py-3 bg-indigo-600 text-white rounded-full text-lg font-semibold hover:bg-indigo-700 transition duration-300 ease-in-out"
+              >
+                Submit Request
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+    </>
+  );
+};
 
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search invoices..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="px-4 py-2 border text-black dark:text-white border-gray-300 dark:border-gray-600 rounded-md w-full bg-white dark:bg-gray-800"
-        />
-      </div>
-
-    
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        {/* Invoice Statistics */}
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-          <h3 className="text-lg text-black dark:text-white font-semibold mb-4">Invoice Statistics</h3>
-          <div className="space-y-3">
-            <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded">
-              <span className="text-gray-600 dark:text-gray-400">Total Paid</span>
-              <p className="text-xl text-gray-700 dark:text-white font-bold">234</p>
-            </div>
-            <div className="bg-red-50 dark:bg-red-900 p-4 rounded">
-              <span className="text-gray-600 dark:text-gray-400">Total Overdue</span>
-              <p className="text-xl text-gray-700 dark:text-white font-bold">514</p>
-            </div>
-            <div className="bg-yellow-50 dark:bg-yellow-900 p-4 rounded">
-              <span className="text-gray-600 dark:text-gray-400">Total Unpaid</span>
-              <p className="text-xl text-gray-700 dark:text-white font-bold">345</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm lg:col-span-2">
-          <h3 className="text-lg text-black dark:text-white font-semibold mb-4">Sales Analytics</h3>
-          <div className="h-64">
-           
-            <div className="flex items-end justify-between h-full border-b-2 border-l-2 border-gray-200 dark:border-gray-700 pb-4 pl-4">
-              {salesData.map((data, index) => (
-                <div
-                  key={index}
-                  className="w-8 bg-blue-200 dark:bg-blue-600"
-                  style={{ height: `${data.value}px` }}
-                />
-              ))}
-            </div>
-            <div className="flex justify-between mt-2 text-sm text-gray-500 dark:text-gray-400">
-              {salesData.map((data) => (
-                <span key={data.month}>{data.month}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-        <h3 className="text-lg text-black dark:text-white font-semibold mb-4">Recent Invoices</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-gray-500 dark:text-gray-400 text-sm border-b">
-                <th className="pb-3">No</th>
-                <th className="pb-3">Id Customers</th>
-                <th className="pb-3">Customer Name</th>
-                <th className="pb-3">Cars Name</th>
-                <th className="pb-3">Order Date</th>
-                <th className="pb-3">Status</th>
-                <th className="pb-3">Price</th>
-              </tr>
-            </thead>
-            <tbody className="text-black dark:text-white">
-              {filteredInvoices.map((row, index) => (
-                <tr key={index} className="text-sm border-b text-black dark:text-white last:border-b-0">
-                  {row.map((cell, cellIndex) => (
-                    <td key={cellIndex} className="py-4">
-                      {cellIndex === 5 ? (
-                        <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            cell === 'Paid'
-                              ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
-                              : cell === 'Pending'
-                              ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200'
-                              : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
-                          }`}
-                        >
-                          {cell}
-                        </span>
-                      ) : (
-                        cell
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
- </div>
-
-  );
-}
+export default ReimbursementPage
