@@ -36,8 +36,8 @@ const SearchBar = () => {
   }, [searchQuery, products]);
 
   return (
-    <div className="fixed top-2 lg:top-7 mx-10 sm:mx-16 md:mx-44 lg:mx-0 left-0 w-[300px] lg:w-full z-50 dark:text-white">
-      <div className="relative flex items-center gap-4 mx-auto mt-16 md:mt-10 lg:mt-5 px-4 py-2 rounded-full border border-gray-300 max-w-[492px]">
+    <div className="fixed top-14  md:top-12 md:w-[550px] lg:w-full left-0 w-full z-40 pointer-events-none">
+  <div className="relative mt-5 md:mt-0  md:ml-52   lg:mx-auto flex items-center gap-4 mx-10 px-4 py-2 rounded-full border border-gray-300 max-w-[492px] pointer-events-auto">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 text-gray-400"
@@ -51,12 +51,12 @@ const SearchBar = () => {
           />
         </svg>
         <input
-          type="text"
-          placeholder="Search car by name, tag, or type"
-          className="bg-transparent w-full text-sm outline-none"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+      type="text"
+      placeholder="Search car by name, tag, or type"
+      className="bg-transparent w-full text-sm outline-none pointer-events-auto"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+    />
         {searchQuery && (
           <IoMdClose
             onClick={() => setSearchQuery("")}
