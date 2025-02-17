@@ -1,37 +1,164 @@
-import Link from 'next/link';
+'use client';
+import React, { useState } from "react";
+import Navbar from "../Components/navbar";
 
-export default function PaymentSuccess() {
+const ReimbursementPage = () => {
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    amount: string;
+    date: string;
+    reason: string;
+    receipt: File | null;
+  }>({
+    name: "",
+    email: "",
+    amount: "",
+    date: "",
+    reason: "",
+    receipt: null,
+  });
+
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    setFormData({
+      ...formData,
+      receipt: file,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Reimbursement Request Submitted:", formData);
+    setSubmissionSuccess(true);
+    setFormData({
+      name: "",
+      email: "",
+      amount: "",
+      date: "",
+      reason: "",
+      receipt: null,
+    });
+    setTimeout(() => setSubmissionSuccess(false), 3000); // Hide message after 3 seconds
+  };
 
   return (
-    <div>
-      <main className="mt-20 flex items-center justify-center min-h-screen bg-gradient-to-tr from-blue-500 to-blue-400 dark:from-gray-800 dark:to-gray-700">
-        <div className="bg-white dark:bg-gray-900 max-w-md w-full p-8 rounded-lg shadow-lg text-center space-y-6">
-          <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-            Thank You!
-          </h1>
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-            Payment Successful!
+    <>
+    <Navbar/>
+      <div className="relative min-h-screen flex items-center justify-center  py-40 dark:bg-slate-900 bg-gray-100">
+        <div className="bg-white dark:bg-slate-700 w-full max-w-lg p-8 rounded-xl shadow-xl">
+          <h2 className="text-4xl font-bold text-center text-blue-500 mb-6">
+            Reimbursement Request Form
           </h2>
 
-          <div className="mt-6 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-500 dark:to-blue-500 p-4 rounded-xl text-white">
-            <h3 className="text-xl font-semibold">Amount Paid</h3>
-          </div>
+          {submissionSuccess && (
+            <div className="mb-4 p-4 bg-green-100 text-green-800 rounded-lg">
+              Your reimbursement request has been submitted successfully!
+            </div>
+          )}
 
-          <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
-            <p>Your car rental is being processed. We&apos;ll send you the details shortly.</p>
-          </div>
-
-          <div className="mt-8">
-            <Link href={"/"}>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-gray-700  text-lg font-semibold">Your Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100  dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Amount</label>
+              <input
+                type="number"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                placeholder="Enter reimbursement amount"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Date of Expense</label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Reason for Reimbursement</label>
+              <textarea
+                name="reason"
+                value={formData.reason}
+                onChange={handleChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                rows={4}
+                placeholder="Describe the reason for reimbursement"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-lg font-semibold">Receipt Upload</label>
+              <input
+                type="file"
+                name="receipt"
+                onChange={handleFileChange}
+                className="w-full p-4 mt-2 bg-gray-100 dark:bg-gray-300 border  text-gray-700 border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div className="flex justify-center space-x-4">
               <button
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold text-lg rounded-full shadow-md transition duration-300"
+                type="button"
+                className="w-full md:w-auto px-6 py-3 bg-gray-800 text-white rounded-full text-lg font-semibold hover:bg-gray-900 transition duration-300 ease-in-out"
+                onClick={() => setFormData({ name: "", email: "", amount: "", date: "", reason: "", receipt: null })}
               >
-                Go Back to Home
+                Reset
               </button>
-            </Link>
-          </div>
+              <button
+                type="submit"
+                className="w-full md:w-auto px-6 py-3 bg-indigo-600 text-white rounded-full text-lg font-semibold hover:bg-indigo-700 transition duration-300 ease-in-out"
+              >
+                Submit Request
+              </button>
+            </div>
+          </form>
         </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
-}
+};
+
+export default ReimbursementPage
