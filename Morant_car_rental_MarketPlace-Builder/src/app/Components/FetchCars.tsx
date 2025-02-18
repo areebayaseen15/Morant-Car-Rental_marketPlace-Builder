@@ -37,7 +37,7 @@ export const fetchCars = async (): Promise<ProductData[]> => {
     const data = await client.fetch(query);
     return data;
   } catch (error) {
-    console.error("Error fetching cars:", error);
+    console.error("Error fetching cars:", error)
     return [];
   }
 };
