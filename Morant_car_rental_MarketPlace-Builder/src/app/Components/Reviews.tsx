@@ -232,4 +232,4 @@ const Reviews = () => {
   );
 };
 
-export default Reviews;
+export default Reviews
