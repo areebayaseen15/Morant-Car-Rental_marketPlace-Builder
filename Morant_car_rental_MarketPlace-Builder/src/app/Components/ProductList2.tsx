@@ -61,7 +61,8 @@ const getAllCars = async (): Promise<Car[]> => {
       availability {
         locations,
         availableDates,
-        availableTimes
+        availableTimes,
+        transmission
       }
     }`
   );
@@ -175,6 +176,6 @@ const ProductListing = ({ pickup = "", dropoff = "" }: ProductListingProps) => {
       </div>
     </div>
   );
-}
+};
 
-export default ProductListing
+export default ProductListing;
