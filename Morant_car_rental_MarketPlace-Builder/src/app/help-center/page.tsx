@@ -175,4 +175,4 @@ const HelpAndCenter = () => {
   );
 };
 
-export default HelpAndCenter;
+export default HelpAndCenter
