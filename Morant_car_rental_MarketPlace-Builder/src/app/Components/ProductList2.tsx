@@ -47,24 +47,7 @@ interface ProductListingProps {
 
 const getAllCars = async (): Promise<Car[]> => {
   const fetchData = await client.fetch(
-    `*[_type == "car"]{
-      _id,
-      image,
-      pricePerDay,
-      name,
-      seatingCapacity,
-      fuelCapacity,
-      type,
-      slug,
-      location,
-      brand,
-      availability {
-        locations,
-        availableDates,
-        availableTimes,
-        transmission
-      }
-    }`
+    `*[_type == "car"]`
   );
   return fetchData;
 };
