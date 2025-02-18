@@ -28,7 +28,7 @@ interface NewReview {
 const Reviews = () => {
   const { user } = useUser();
   
-  // 🔹 Start with an empty array (remove previous reviews)
+
 
   const [reviews, setReviews] = useState<Review[]>(() => {
     if (typeof window !== "undefined") {
@@ -232,4 +232,4 @@ const Reviews = () => {
   );
 };
 
-export default Reviews
+export default Reviews;
