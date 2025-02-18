@@ -4,7 +4,7 @@ import { useUser } from '@clerk/nextjs';
 import Navbar from '../Components/navbar';
 
 const HelpAndCenter = () => {
-  const { user } = useUser(); // Get user info from Clerk
+  const { user } = useUser();
   const [searchTerm, setSearchTerm] = useState('');
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [feedback, setFeedback] = useState('');
