@@ -13,9 +13,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add("dark"); // Add dark mode globally
+      document.documentElement.classList.add("dark"); 
     } else {
-      document.documentElement.classList.remove("dark"); // Remove dark mode
+      document.documentElement.classList.remove("dark"); 
     }
   }, [darkMode]);
 
@@ -25,14 +25,15 @@ export default function Dashboard() {
         <div className="mt-32 max-w-[1440px] mx-auto p-4 flex flex-col lg:flex-row gap-6 dark:bg-slate-700 bg-[#F6F7F9]">
         {/* Sidebar Toggle Button (Visible on small screens) */}
         <button 
-          className="lg:hidden text-2xl text-[#3563E9] p-2 fixed top-4 left-4 z-50 bg-white rounded-md shadow-md"
+          className="lg:hidden relative  text-2xl text-[#3563E9] p-2    z-50 bg-white rounded-md shadow-md"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
           {isSidebarOpen ? <FaTimes /> : <FaBars />}
         </button>
 
         {/* Sidebar/Main Menu */}
-        <div className={`lg:w-[286px] w-full dark:bg-slate-900 bg-white p-4 rounded-lg flex flex-col justify-between shadow-md fixed lg:relative top-0 left-0 h-full lg:h-auto z-40 transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
+       <div className={`lg:w-[286px] mt-[186px] lg:mt-0 w-full dark:bg-slate-900 bg-white p-4 rounded-lg flex flex-col justify-between shadow-md fixed lg:relative top-0 left-0 h-full lg:h-auto z-50 transition-all duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
+
           <div>
             <h2 className="text-sm font-semibold text-[#94A7CB] dark:text-white opacity-40 mb-4">MAIN MENU</h2>
             <ul className="space-y-6 font-medium text-base text-[#94A7CB] dark:text-white">
