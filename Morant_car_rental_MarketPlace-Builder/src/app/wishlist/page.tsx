@@ -82,13 +82,13 @@ const Wishlist = () => {
     <div>
       <Navbar/>
       
-      <h1 className="text-2xl mt-40 font-bold mb-4 text-center">My Wishlist</h1>
+      <h1 className="text-2xl mt-40 font-bold mb-4 text-center text-black dark:text-white">My Wishlist</h1>
       {wishlist.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {wishlist.map((item) => (
             <div
               key={item._id}
-              className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center"
+              className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center"
             >
               <Image
                 src={urlFor(item.image).url()}
@@ -97,9 +97,9 @@ const Wishlist = () => {
                 height={150}
                 className="object-cover rounded-md"
               />
-              <h2 className="text-lg font-semibold mt-2">{item.name}</h2>
-              <p className="text-sm text-gray-500">{item.type}</p>
-              <p className="text-lg font-bold text-blue-600">
+              <h2 className="text-lg font-semibold mt-2 text-black dark:text-white">{item.name}</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-300">{item.type}</p>
+              <p className="text-lg font-bold text-blue-600 dark:text-blue-400">
                 {item.pricePerDay}
               </p>
               {/* Delete from Wishlist button */}
@@ -113,7 +113,7 @@ const Wishlist = () => {
           ))}
         </div>
       ) : (
-        <p className="text-gray-600">Your wishlist is empty.</p>
+        <p className="text-gray-600 dark:text-gray-300">Your wishlist is empty.</p>
       )}
     </div>
   );
