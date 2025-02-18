@@ -135,7 +135,7 @@ const Cards = ({ item }: { item: ProductData }) => {
           </p>
         </div>
 
-        {/* Heart Icon */}
+        {/*  Icon */}
         <div className="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px]">
           {isInWishlist ? (
             <IoHeart
