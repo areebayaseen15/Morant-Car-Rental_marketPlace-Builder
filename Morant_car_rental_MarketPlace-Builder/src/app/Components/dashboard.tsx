@@ -58,7 +58,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
       {/* Header */}
       <header className="mt-40 bg-gradient-to-r from-blue-500 to-blue-700 text-white p-5 shadow-lg flex justify-between items-center">
         <h1 className="text-2xl font-bold">User Dashboard</h1>
@@ -72,7 +72,7 @@ const Dashboard = () => {
 
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-1/4 bg-white shadow-md p-6">
+        <aside className="w-1/4 bg-white dark:bg-gray-800 shadow-md p-6">
           <nav>
             <ul className="space-y-4">
               {[{ id: "overview", icon: <FaCar />, label: "Overview" },
@@ -84,7 +84,7 @@ const Dashboard = () => {
                   className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition ${
                     activeTab === tab.id
                       ? "bg-blue-500 text-white shadow-md"
-                      : "text-gray-700 hover:bg-blue-100"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700"
                   }`}
                   onClick={() => handleTabChange(tab.id)}
                 >
@@ -97,7 +97,7 @@ const Dashboard = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-8 bg-gray-100">
+        <main className="flex-1 p-8 bg-gray-100 dark:bg-gray-800">
           {activeTab === "overview" && (
             <section>
               <h2 className="text-2xl font-bold mb-6">Overview</h2>
@@ -105,20 +105,20 @@ const Dashboard = () => {
                 {bookings.map((booking) => (
                   <div
                     key={booking.id}
-                    className="bg-white p-6 rounded-lg shadow-md"
+                    className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md"
                   >
                     <h3 className="text-lg font-semibold mb-2">{booking.car}</h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-300">
                       <strong>Pickup:</strong> {booking.pickupDate}
                     </p>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-300">
                       <strong>Dropoff:</strong> {booking.dropoffDate}
                     </p>
                     <p
                       className={`text-sm mt-3 px-3 py-1 rounded-full inline-block ${
                         booking.status === "Confirmed"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-yellow-100 text-yellow-700"
+                          ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300"
+                          : "bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300"
                       }`}
                     >
                       {booking.status}
@@ -132,14 +132,14 @@ const Dashboard = () => {
           {activeTab === "history" && (
             <section>
               <h2 className="text-2xl font-bold mb-6">Order History</h2>
-              <p className="text-gray-600">No order history available.</p>
+              <p className="text-gray-600 dark:text-gray-300">No order history available.</p>
             </section>
           )}
 
           {activeTab === "profile" && user && (
             <section>
               <h2 className="text-2xl font-bold mb-6">Profile</h2>
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
                 <p>
                   <strong>Name:</strong> {user.fullName || "No Name"}
                 </p>
