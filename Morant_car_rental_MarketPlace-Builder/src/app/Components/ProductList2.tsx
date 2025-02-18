@@ -175,6 +175,6 @@ const ProductListing = ({ pickup = "", dropoff = "" }: ProductListingProps) => {
       </div>
     </div>
   );
-};
+}
 
-export default ProductListing;
+export default ProductListing
