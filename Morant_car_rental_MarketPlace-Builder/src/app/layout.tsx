@@ -7,7 +7,7 @@ import Script from "next/script";
 
 import Footer from "./Components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "./context/ThemeContext"; // Named export
+import { ThemeProvider } from "@/app/context/ThemeContext";
 
 const publishableKey = "pk_test_Y29tbXVuYWwtbWFjYXF1ZS05My5jbGVyay5hY2NvdW50cy5kZXYk"; 
 const inter = Inter({ subsets: ["latin"] });
