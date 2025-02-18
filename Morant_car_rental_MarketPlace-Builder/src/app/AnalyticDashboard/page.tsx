@@ -33,7 +33,7 @@ export default function Dashboard() {
 
         {/* Sidebar/Main Menu */}
        <div className={`lg:w-[286px]  w-full dark:bg-slate-900 bg-white p-4 rounded-lg flex flex-col justify-between shadow-md fixed lg:relative top-0 left-0 h-full lg:h-auto
-       z-10 transition-all duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
+       z-50 lg:z-10 transition-all duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
 
           <div>
             <h2 className="text-sm font-semibold text-[#94A7CB] dark:text-white opacity-40 mb-4">MAIN MENU</h2>
