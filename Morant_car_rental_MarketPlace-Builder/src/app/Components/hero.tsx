@@ -64,7 +64,7 @@ export default function Hero() {
             <Image src="/Assets/mark.png" alt="mark" width={20} height={20} />
             <h3 className="text-[16px] lg:text-xl font-semibold text-gray-800 dark:text-white">Pick-Up</h3>
           </div>
-          <div className="mt-5 flex flex-row justify-between items-center">
+          <div className="mt-5 flex flex-row justify-between gap-3 items-center">
             {/* Location Input */}
             <div>
               <h1 className="text-[#1A202C] dark:text-white font-extrabold text-[16px] leading-[24px]">Location</h1>
@@ -119,7 +119,7 @@ export default function Hero() {
             <Image src="/Assets/mark.png" alt="mark" width={20} height={20} />
             <h3 className="text-[16px] lg:text-xl font-semibold text-gray-800 dark:text-white">Drop-Off</h3>
           </div>
-          <div className="mt-5 flex flex-row justify-between items-center">
+          <div className="mt-5 flex flex-row justify-between gap-3 items-center">
             {/* Location Input */}
             <div>
               <h1 className="text-[#1A202C] dark:text-white font-extrabold text-[16px] leading-[24px]">Location</h1>
@@ -164,5 +164,5 @@ export default function Hero() {
       {/* 🚘 Filtered Product Listing */}
       <ProductListing pickup={pickup.location} dropoff={dropoff.location} />
     </div>
-  )
+  );
 }
