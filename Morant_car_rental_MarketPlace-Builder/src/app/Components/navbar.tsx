@@ -33,11 +33,13 @@ const Navbar = () => {
 
            {/* Mobile Profile & Menu Toggle */}
         <div className="relative z-20 flex gap-5">
-          <Link href="/AnalyticDashboard">
+          
             <div className="rounded-full md:hidden mt-2 cursor-pointer">
+            <Link href="/AnalyticDashboard">
               <Profile />
-            </div>
           </Link>
+
+            </div>
 
           <button className="md:hidden text-gray-600 dark:text-white" onClick={toggleMenu}>
             ☰
@@ -95,11 +97,15 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <Link href="/AnalyticDashboard">
             <div className="flex items-center justify-center w-12 h-12 rounded-full border border-[#C3D4E9] border-opacity-[80%] cursor-pointer">
+           
+           
+          <Link href="/AnalyticDashboard">
+           
               <Profile />
-            </div>
           </Link>
+
+            </div>
         </div>
       </div>
     </div>
